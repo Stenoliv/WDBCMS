@@ -5,6 +5,7 @@
     padding: 8px;
     width: fit-content;
     margin-bottom: 16px;
+    min-width: 250px;
 }
 #drinks{
     background-color: palevioletred;
@@ -12,4 +13,9 @@
     border-radius: 8px;
     padding: 8px;
     width: fit-content;
+    min-width: 400px;
+}
+
+.apiview {
+    flex: 1;
 }

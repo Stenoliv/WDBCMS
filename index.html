@@ -1,26 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="style.css">
     <title>Min startsida</title>
 </head>
+
 <body>
-    <section id="apiview">
+    <section class="apiview">
         <div id="bored"></div>
         <div id="drinks">
-                Search a recepie for a drink!
-                <input type="text" id="drinkname">
-                <button id="searchfordrink">Search</button>
+            Search a recepie for a drink!
+            <input type="text" id="drinkname">
+            <button id="searchfordrink">Search</button>
             <div id="drinkrecepie"></div>
         </div>
-
     </section>
 
 
+    <section class="apiview currencyConverter">
+        <div class="currency-calculator">
+            <h3>Currency Calculator</h3>
+            <div class="currency-toolbar-container">
+                <input type="number" id="currency-calc-value" onchange="updateExchange()">
+                <span>From:</span>
+                <select id="currency-calc-from" onchange="updateFromCurrency()">
+                </select>
+                <span>To:</Span>
+                <select id="currency-calc-to" onchange="updateExchange()">
+                </select>
+                <div class="currency-calc-api-output">
+                    <p id="currency-calc-output">...</p>
+                </div>
+            </div>
+            <script src="./currencyApi.js"></script>
+        </div>
+    </section>
+
+    
+    <section class="apiview ">
+
+    </section>
 
     <script src="./getfromapi.js"></script>
 </body>
+
 </html>
