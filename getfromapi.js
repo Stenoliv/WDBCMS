@@ -12,7 +12,7 @@ async function getboredapi(){
 getboredapi();
 
 document.querySelector("#searchfordrink").addEventListener("click",e => {getdrinkapi()});
-    try{
+    //try{
     async function getdrinkapi(){
     $drink = document.getElementById('drinkname').value;
     const resp = await fetch ("https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+$drink);
@@ -21,7 +21,7 @@ document.querySelector("#searchfordrink").addEventListener("click",e => {getdrin
     document.querySelector('#drinkrecepie').innerHTML =`
     <h2>Your drink is here</h2><p>${respJson.drinks[0].strDrink}</p><p>Instructions: ${respJson.drinks[0].strInstructions}</p>`
     }
-    }catch{
+    /*}catch{
         document.querySelector('#drinkrecepie').innerHTML =`Error while trying to get drink!`
-    }
+    }*/
 
