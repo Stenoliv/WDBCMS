@@ -10,6 +10,7 @@ body {
     align-items: center;
     margin: 0;
     padding: 0;
+    margin-top: 60px;
 }
 
 #bored{
@@ -57,8 +58,17 @@ body {
         flex: 1 0  calc(100% - 40px);
         max-width: calc(100% - 40px);
     }
+    .apiview:nth-child(5) {
+        order: 1;
+    }
+    
 } 
 
+/*Whats my ip*/
+.whats-my-ip-response {
+    display: flex;
+    flex-direction: column;
+}
 
 /*Currency Calculator*/
 .currency-calculator {
