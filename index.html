@@ -21,6 +21,20 @@
                     <span>Weather API key:</span>
                     <input type="text" id="weather-api-key">
                 </div>
+                <div id="divred">
+                    <label>RED</label>
+                    <input type="range" id="red" value="0" min="0" max="255">
+                </div>
+
+                <div id="divgreen">
+                    <label>GREEN</label>
+                    <input type="range" id="green" value="0" min="0" max="255">
+                </div>
+
+                <div id="divblue">
+                    <label>BLUE</label>
+                    <input type="range" id="blue" value="0" min="0" max="255">
+                </div>
             </div>
         </div>
         <img src="./gearsIcon.png" onclick="changeMenu()" id="btn-settings">
@@ -84,6 +98,7 @@
             
         </div>
     </section>
+    <script src="./colorpicker.js"></script>
     <script src="./getfromapi.js"></script>
     <script src="./weather_api.js"></script>
 </body>

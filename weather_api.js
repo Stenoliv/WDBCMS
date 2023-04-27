@@ -26,7 +26,7 @@ async function getWeather(){
     //lånad kod slut
         weatherid = respJson.weather[0].icon;
         document.querySelector('#weather').innerHTML += `
-        <h2>Weather at ${respJson.name}</h2><p>${respJson.main.temp}℃</p><p>Feels like ${respJson.main.feels_like}℃</p><p>${respJson.wind.speed}m/s ${degToCompass()}</p><p>Humidity ${respJson.main.humidity}%</p><img src=' https://openweathermap.org/img/wn/${weatherid}@2x.png'></img><p>${respJson.weather[0].description}</p> `;
+        <h2>Weather at ${respJson.name}</h2><img src=' https://openweathermap.org/img/wn/${weatherid}@2x.png'></img><p>${respJson.weather[0].description}</p><p>${respJson.main.temp}℃ Feels like ${respJson.main.feels_like}℃</p><p>${respJson.wind.speed}m/s ${degToCompass()}</p><p>Humidity ${respJson.main.humidity}%</p> `;
 }catch {
     document.querySelector('#weather').innerHTML = `Error while trying to get weather!`
 }
