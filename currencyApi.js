@@ -1,11 +1,14 @@
 let currencyInfo;
-fetch('currency-info.json')
+async function loadJSON() {
+await fetch('currency-info.json')
     .then(response => response.json())
     .then(data => {
         currencyInfo = data;
         console.log(data)
     })
-
+    getCurrencys();
+}
+loadJSON()
 const API_URL = "https://open.er-api.com/v6";
 const API_LATEST_DATA = "currency-latest-fetch";
 
@@ -18,6 +21,8 @@ let rates = {};
 let LATEST_DATA = "";
 
 async function getCurrencys() {
+    console.log("getCurrencys()")
+
     if (!localStorage.getItem(API_LATEST_DATA)) {
         LATEST_DATA = `{
             "from":"USD",
@@ -42,10 +47,10 @@ async function getCurrencys() {
             const currencyName = currencyInfo[rate].currency_name;
             const country = currencyInfo[rate].country;
             select1.innerHTML += `
-        <option value="${rate}">${rate} Name: ${currencyName} Country: ${country}</option>
+        <option value="${rate}">${rate} | Name: ${currencyName} | Country: ${country}</option>
         `
             select2.innerHTML += `
-        <option value="${rate}">${rate} Name: ${currencyName} Country: ${country}</option>
+        <option value="${rate}">${rate} | Name: ${currencyName} | Country: ${country}</option>
         `
         }
         select1.value = LATEST_DATA.from;
@@ -58,7 +63,6 @@ async function getCurrencys() {
 
         output.innerHTML = exchangedValue.toString() + " " + select2.value;
 }
-getCurrencys();
 
 async function updateFromCurrency() {
     console.log("updateFromCurrency()")

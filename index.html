@@ -10,8 +10,28 @@
 </head>
 
 <body>
+    <section class="settings-menu">
+        <div class="hidden" id="menu-settings">
+            <div class="settings-container">
+                <div>
+                    <span>Chat GPT API key:</span>
+                    <input type="text" id="chatgpt-api-key">
+                </div>
+                <div>
+                    <span>Weather API key:</span>
+                    <input type="text" id="weather-api-key">
+                </div>
+            </div>
+        </div>
+        <img src="./gearsIcon.png" onclick="changeMenu()" id="btn-settings">
+        <script src="settingsMenu.js"></script>
+    </section>
+
     <section class="apiview">
         <div id="bored"></div>
+    </section>
+
+    <section class="apiview">
         <div id="drinks">
             Search a recepie for a drink!
             <input type="text" id="drinkname">
@@ -21,30 +41,45 @@
     </section>
 
 
-    <section class="apiview currencyConverter">
+    <section class="apiview">
         <div class="currency-calculator">
-            <h3>Currency Calculator</h3>
+            <h3 class="currency-head">Currency Calculator</h3>
             <div class="currency-toolbar-container">
-                <input type="number" id="currency-calc-value" onchange="updateExchange()">
-                <span>From:</span>
-                <select id="currency-calc-from" onchange="updateFromCurrency()">
-                </select>
-                <span>To:</Span>
-                <select id="currency-calc-to" onchange="updateExchange()">
-                </select>
-                <div class="currency-calc-api-output">
-                    <p id="currency-calc-output">...</p>
+                <div class="currency-toolbar-row">
+                    <input class="currency-toolbar-row-left" type="number" placeholder="Input" id="currency-calc-value"
+                        onchange="updateExchange()">
+                    <div class="currency-toolbar-row-right">
+                        <span class="left-small-flex">From:</span>
+                        <select class="right-small-flex" id="currency-calc-from" onchange="updateFromCurrency()">
+                        </select>
+                    </div>
+                </div>
+                <div class="currency-toolbar-row">
+                    <span class="currency-toolbar-row-left" id="currency-calc-output"></span>
+                    <div class="currency-toolbar-row-right">
+                        <span class="left-small-flex">To:</Span>
+                        <select class="right-small-flex" id="currency-calc-to" onchange="updateExchange()">
+                        </select>
+                    </div>
                 </div>
             </div>
             <script src="./currencyApi.js"></script>
         </div>
     </section>
 
-    
-    <section class="apiview ">
-
+    <section class="apiview bigview">
+        <div class="chatgpt">
+            <h3>Ask me anything: </h3>
+            <input type="text" id="chatgpt-question">
+            <textarea id="chatgpt-answer"></textarea>
+            <button id="btn-submit-question">Submit</button>
+            <script src="chatgpt.js"></script>
+        </div>
     </section>
 
+    <section class="apiview">
+        <span>Hello!</span>
+    </section>
     <script src="./getfromapi.js"></script>
 </body>
 

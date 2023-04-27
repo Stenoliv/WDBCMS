@@ -1,21 +1,191 @@
+:root {
+    --calcCurrencyColor: #96CD86;
+}
+
+body {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
 #bored{
     background-color: powderblue;
     border: 4px solid black;
     border-radius: 8px;
     padding: 8px;
-    width: fit-content;
     margin-bottom: 16px;
-    min-width: 250px;
 }
 #drinks{
     background-color: palevioletred;
     border: 4px solid black;
     border-radius: 8px;
     padding: 8px;
-    width: fit-content;
-    min-width: 400px;
 }
 
 .apiview {
+    flex: 1 0 calc(25% - 40px);
+    max-width: calc(25% - 40px);
+    margin: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.bigview {
+    flex: 1 0 calc(50% - 40px);
+    max-width: calc(50% - 40px);
+}
+@media screen and (max-width: 1200px) {
+    
+    .apiview {
+        flex: 1 0  calc(33% - 40px);
+        max-width: calc(33% - 40px);
+    }
+    .bigview {
+        flex: 1 0  calc(66% - 40px);
+        max-width: calc(66% - 40px);
+    }   
+}
+@media screen and (max-width: 900px) {
+    .apiview {
+        flex: 1 0  calc(50%- 40px);
+        max-width: calc(50% - 40px);
+    }
+    .bigview {
+        flex: 1 0  calc(100% - 40px);
+        max-width: calc(100% - 40px);
+    }
+} 
+
+
+/*Currency Calculator*/
+.currency-calculator {
+    display: flex;
+    flex-flow: column;
+    background-color: var(--calcCurrencyColor);
+    padding: 20px;
+    padding-top: 0px;
+    padding-bottom: 30px;
+    border-radius: 10px;
+    border-width: 4px;
+    border-color: black;
+    border-style: solid;
+}
+.currency-head {
+    text-align: center;
+}
+.currency-toolbar-row {
+    display: flex;
+    flex-flow: row;
     flex: 1;
+    margin: 0;
+    padding: 0;
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+    align-items: center;
+}
+.currency-toolbar-row-left {
+    flex: 2;
+    padding: 10px;
+    min-width: 0;
+    background-color: var(--calcCurrencyColor);
+    border: none;
+    margin: 0;
+    overflow: auto;
+}
+.currency-toolbar-row-right {
+    flex: 4;
+    padding: 10px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    border: none;
+    margin: 0;
+}
+
+.left-small-flex {
+    flex: 1;
+    padding: 5px;
+    padding-left: 1px;
+    padding-right: 0px;
+}
+
+.right-small-flex {
+    flex: 2;
+    width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 5px;
+    background-color:var(--calcCurrencyColor);
+    padding: 7px;
+    padding-left: 0;
+    padding-right: 0;
+}
+.right-small-flex option {
+    white-space: nowrap;
+    width: 100%;
+    border-bottom:  1px black solid;
+}
+
+
+/*Chat gpt*/
+.chatgpt {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*Settings Menu*/
+.hidden {
+    visibility: hidden;
+    display: none;
+}
+.settings-menu {
+    position: absolute;
+    pointer-events: none;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#btn-settings {
+    pointer-events:all;
+    position: fixed;
+    right: 0;
+    top: 0;
+    margin: 10px;
+    padding: 5px;
+    width: 40px;
+    background-color: white;
+    border: 4px black solid;
+    border-radius: 40px;
+}
+#btn-settings:hover {
+    background-color: gray;
+    cursor: pointer;
+}
+
+#menu-settings {
+    pointer-events:all;
+    position: absolute;
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.settings-container {
+    border: 4px black solid;
+    border-radius: 15px;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-flow: column;
 }
