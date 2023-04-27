@@ -37,12 +37,11 @@ async function getCurrencys() {
     const request = await fetch(API_URL + "/latest/" + LATEST_DATA.from);
     const resp = await request.json();
 
-    console.log(resp.rates);
-    rates = resp.rates;
-
     select1.innerHTML = "";
     select2.innerHTML = "";
     if (resp.result == "success") {
+        rates = resp.rates;
+
         for (let rate in rates) {
             const currencyName = currencyInfo[rate].currency_name;
             const country = currencyInfo[rate].country;
@@ -55,13 +54,16 @@ async function getCurrencys() {
         }
         select1.value = LATEST_DATA.from;
         select2.value = LATEST_DATA.to;
-    } else {
-        localStorage.removeItem(API_LATEST_DATA);
-    }
-    const exchangedValue = input.value * rates[select2.value];
+
+        const exchangedValue = input.value * rates[select2.value];
         console.log(exchangedValue);
 
         output.innerHTML = exchangedValue.toString() + " " + select2.value;
+    } else {
+        localStorage.removeItem(API_LATEST_DATA);
+
+        output.innerHTML = "Failed to load try refresh!"
+    }
 }
 
 async function updateFromCurrency() {
