@@ -24,11 +24,8 @@ async function getCurrencys() {
     console.log("getCurrencys()")
 
     if (!localStorage.getItem(API_LATEST_DATA)) {
-        LATEST_DATA = `{
-            "from":"USD",
-            "to":"EUR"
-        }`
-        localStorage.setItem(API_LATEST_DATA, LATEST_DATA);
+        LATEST_DATA = {from:'USD',to:'EUR'}
+        localStorage.setItem(API_LATEST_DATA, JSON.stringify(LATEST_DATA));
     } else {
         LATEST_DATA = JSON.parse(localStorage.getItem(API_LATEST_DATA));
     }
