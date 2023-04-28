@@ -17,7 +17,7 @@ const API_LATEST_DATA = "currency-latest-fetch";
 const select1 = document.querySelector("#currency-calc-from");
 const select2 = document.querySelector("#currency-calc-to");
 const output = document.querySelector("#currency-calc-output");
-const input = document.querySelector("#currency-calc-value");
+const currencyInput = document.querySelector("#currency-calc-value");
 
 let rates = {};
 let LATEST_DATA = "";
@@ -50,7 +50,7 @@ async function getCurrencys() {
                 select1.value = LATEST_DATA.from;
                 select2.value = LATEST_DATA.to;
         
-                const exchangedValue = input.value * rates[select2.value];
+                const exchangedValue = currencyInput.value * rates[select2.value];
         
                 output.innerHTML = exchangedValue.toString() + " " + select2.value;
             } else {
@@ -76,7 +76,7 @@ async function updateFromCurrency() {
 }
 
 async function updateExchange() {
-    const exchangedValue = input.value * rates[select2.value];
+    const exchangedValue = currencyInput.value * rates[select2.value];
 
     LATEST_DATA.from = select1.value;
     LATEST_DATA.to = select2.value;
