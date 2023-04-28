@@ -3,6 +3,8 @@ const SAVED_SIZE_FONT = "font-size";
 var page = document.querySelector(':root');
 var selectedFontFamily = "";
 var selectedFontSize = "12px";
+const min = 12;
+const max = 24;
 const selector = document.querySelector("#page-font");
 const input = document.querySelector("#font-size");
 
@@ -20,10 +22,11 @@ if(!localStorage.getItem(SAVED_SIZE_FONT)) {
     selectedFontSize = localStorage.getItem(SAVED_SIZE_FONT);
 } else selectedFontSize = localStorage.getItem(SAVED_SIZE_FONT);
 setfontsize(selectedFontSize);
-input.value = selectedFontSize;
 
 function setfontsize(value) {
     page.style.setProperty('--font-size', value)
+    const selectedFont = parseInt(selectedFontSize)
+    input.value = selectedFont;
 }
 
 function setfontfamily(value) {
@@ -35,8 +38,12 @@ selector.addEventListener('change',(event) => {
     setfontfamily(selectedFontFamily)
     localStorage.setItem(SAVED_SELECTED_FONT, selectedFontFamily)
 })
-input.addEventListener('input', (event) => {
-    selectedFontSize = input.value+"px";
+input.addEventListener('change', (event) => {
+    if(input.value < min) {
+        selectedFontSize = `${input.min}px`;
+    } else if (input.value > max) {
+        selectedFontSize = `${input.max}px`;
+    } else selectedFontSize = `${input.value}px`;
     console.log(selectedFontSize);
     setfontsize(selectedFontSize);
     localStorage.setItem(SAVED_SIZE_FONT, selectedFontSize);
