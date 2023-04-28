@@ -123,6 +123,7 @@ body {
 #response-map {
     width: 250px;
     height: 250px;
+    z-index: 1;
 }
 
 /*Currency Calculator*/
