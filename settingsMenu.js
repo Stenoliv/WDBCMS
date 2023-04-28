@@ -6,8 +6,7 @@ const chatgptAPI = document.getElementById("chatgpt-api-key");
 const weatherAPI = document.getElementById("weather-api-key");
 
 function changeMenu() {
-    if (settingsMneu.classList.contains("hidden"))
-    {
+    if (settingsMneu.classList.contains("hidden")) {
         settingsMneu.classList.remove("hidden");
         updateAPIkey(false)
     } else {

@@ -1,5 +1,7 @@
 :root {
     --calcCurrencyColor: #96CD86;
+    --whatsmyipcolor: rgb(178, 184, 233);
+    --chatgptcolor:#b285ec; 
 }
 
 body {
@@ -10,7 +12,7 @@ body {
     align-items: center;
     margin: 0;
     padding: 0;
-    margin-top: 60px;
+    margin-top: 80px;
     background-color: rgb(210, 255, 242);
 }
 
@@ -42,46 +44,81 @@ body {
 }
 
 .apiview {
-    flex: 1 0 calc(25% - 40px);
-    max-width: calc(25% - 40px);
+    flex: 1;
+    flex-basis: 33%;
+    max-width: calc(33% - 40px);
+    min-height: 150px;
     margin: 20px;
     margin-top: 5px;
     margin-bottom: 5px;
 }
 .bigview {
-    flex: 1 0 calc(50% - 40px);
-    max-width: calc(50% - 40px);
-}
-@media screen and (max-width: 1200px) {
-    
-    .apiview {
-        flex: 1 0  calc(33% - 40px);
-        max-width: calc(33% - 40px);
-    }
-    .bigview {
-        flex: 1 0  calc(66% - 40px);
-        max-width: calc(66% - 40px);
-    }   
+    flex: 2;
+    flex-basis: 66%;
+    max-width: calc(66% - 40px);
 }
 @media screen and (max-width: 900px) {
     .apiview {
-        flex: 1 0  calc(50%- 40px);
+        flex: 1;
+        flex-basis: 50%;
         max-width: calc(50% - 40px);
     }
     .bigview {
-        flex: 1 0  calc(100% - 40px);
+        flex: 2;
+        flex-basis: 100%;
         max-width: calc(100% - 40px);
     }
     .apiview:nth-child(5) {
         order: 1;
     }
-    
 } 
 
 /*Whats my ip*/
+.whats-my-ip-container {
+    background-color: var(--whatsmyipcolor);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: 4px black solid;
+    border-radius: 8px;
+}
+.whats-my-ip-inner-contaimer {
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    resize: both;
+}
+.whats-my-ip-your-ip {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.whats-my-ip-your-ip p {
+    margin-left: 10px;
+}
 .whats-my-ip-response {
     display: flex;
-    flex-direction: column;
+    flex-flow: column;
+}
+.whats-my-ip-map-container {
+    flex:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+#input-ip {
+    text-align: center;
+}
+#response-map {
+    aspect-ratio: 1;
+    width: 80%;
+    height: calc(100vh-10px);
 }
 
 /*Currency Calculator*/
@@ -156,10 +193,64 @@ body {
 
 
 /*Chat gpt*/
-.chatgpt {
+.chatgpt-container {
     flex: 1;
     display: flex;
     flex-direction: column;
+    background-color: var(--chatgptcolor);
+    border: 4px black solid;
+    border-radius: 8px;
+}
+.chatgpt-column {
+    display: flex;
+    flex-flow: column;
+}
+.chatgpt-column h3 {
+    margin: 0;
+    text-align: center;
+    padding: 5px;
+}
+.chatgpt-question-container{
+    display: flex;
+    flex-flow: row;
+    border: 5px black solid;
+    border-radius: 10px;
+    margin: 5px;
+}
+#chatgpt-question {
+    flex:5;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: none;
+    padding: 5px;
+}
+#btn-submit-question {
+    flex: 1;
+    border: none;
+    padding: 0;
+    margin: 0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: 5px black solid;
+}
+.chatgpt-answer-status {
+    margin: 5px;
+    padding: 5px;
+    background-color: white;
+    border: 5px black solid;
+    border-radius: 10px;
+}
+.chatgpt-answer-status:hover {
+    cursor: pointer;
+}
+#chatgpt-answer {
+    padding: 5px;
+    margin: 5px;
+    height: auto;
+    resize: vertical;
+    min-height: 50px;
+    border: 5px black solid;
+    border-radius: 10px;
 }
 
 
@@ -169,12 +260,14 @@ body {
     display: none;
 }
 .settings-menu {
-    position: absolute;
+    position: fixed;
     pointer-events: none;
+    box-sizing: border-box;
     right: 0;
     top: 0;
     width: 100%;
     height: 100%;
+    z-index: 100;
 }
 
 #btn-settings {
@@ -183,6 +276,7 @@ body {
     right: 0;
     top: 0;
     margin: 10px;
+    margin-right: 25px;
     padding: 5px;
     width: 40px;
     background-color: white;
@@ -198,6 +292,7 @@ body {
     pointer-events:all;
     position: absolute;
     backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
     align-items: center;

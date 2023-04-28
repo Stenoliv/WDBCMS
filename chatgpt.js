@@ -3,7 +3,8 @@ const CHATGPT_API_URL = "https://openai-ama-api-fw-teaching.rahtiapp.fi/?api_key
 
 const answerHTML = document.querySelector("#chatgpt-answer");
 const questionHTML = document.getElementById("chatgpt-question");
-
+const questionStatusHTML = document.querySelector(".chatgpt-answer-status");
+var lastQuestion = "";
 
 questionHTML.addEventListener("keypress", (e) => {
     if (e.key === 'Enter') {
@@ -28,18 +29,27 @@ function checkIfAPIKeySet() {
 async function askQuestion() {
     if (checkIfAPIKeySet()) {
         console.log("APIkeySet")
-
         const KEY = localStorage.getItem(API_KEY_STORAGE_NAME);
 
-        const request = await fetch(CHATGPT_API_URL  + KEY + "&simulation=1" /*Remove before commit*/, {
+        questionStatusHTML.innerHTML = "I am thinking"
+        await fetch(CHATGPT_API_URL  + KEY, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(questionHTML.value)
-        });
-        const resp = await request.json();
+        })
+        .then(request => request.json())
+        .then(data => {
+            lastQuestion = questionHTML.value;
+            questionStatusHTML.innerHTML = "You asked me this: " + lastQuestion;
+            questionHTML.value = ""
 
-        console.log(resp);
-        answerHTML.innerHTML = resp.answer;
+            console.log("all done!")
+            console.log(data);
+            answerHTML.innerHTML = data.answer;
+        })
+        .catch(error => {
+            console.log(error)
+        })
     } else {
         console.log("No api key set!")
         answerHTML.innerHTML = "No API key found!";
@@ -50,4 +60,9 @@ async function askQuestion() {
 document.getElementById("btn-submit-question").addEventListener('click', event => {
     askQuestion()
     console.log("Asking Question")
+})
+
+questionStatusHTML.addEventListener('click', e => {
+    questionHTML.value = lastQuestion;
+    questionStatusHTML.innerHTML = "Waiting for you to ask me something"
 })

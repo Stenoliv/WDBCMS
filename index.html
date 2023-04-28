@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Min startsida</title>
+    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 </head>
 
 <body>
@@ -84,11 +85,18 @@
     </section>
 
     <section class="apiview bigview">
-        <div class="chatgpt">
-            <h3>Ask me anything: </h3>
-            <input type="text" id="chatgpt-question">
-            <textarea id="chatgpt-answer"></textarea>
-            <button id="btn-submit-question">Submit</button>
+        <div class="chatgpt-container">
+            <div class="chatgpt-column">
+                <h3>Ask me anything: </h3>
+                <div class="chatgpt-question-container">
+                    <input type="text" id="chatgpt-question" placeholder="input">
+                    <button id="btn-submit-question">Submit</button>
+                </div>
+            </div>
+            <div class="chatgpt-column">
+                <p class="chatgpt-answer-status">Waiting for you to ask me something</p>
+                <textarea id="chatgpt-answer"></textarea>
+            </div>
             <script src="chatgpt.js"></script>
         </div>
     </section>
@@ -98,6 +106,36 @@
             
         </div>
     </section>
+    
+    <section class="apiview">
+        <div class="whats-my-ip-container">
+            <div class="whats-my-ip-inner-contaimer">
+                <h2 style="padding:0; margin:0;">What is my ip?</h2>
+                <div class="whats-my-ip-your-ip">
+                    <span>Your ip is: </span>
+                    <p id="your-ip">0.0.0.0</p>
+                </div>
+                <h3 style="margin:0;padding:0;">Where is this ip?</h3>
+                <input type="text" id="input-ip">
+                <div class="whats-my-ip-response">
+                    <div>
+                        <span>in</span>
+                        <span id="response-country">fin</span>
+                    </div>
+                    <div>
+                        <span id="response-city">ip</span>
+                        <span id="response-region">fin</span>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="whats-my-ip-map-container">
+                <div id="response-map"></div>
+            </div>
+        </div>
+        <script src="./whatsMyIp.js"></script>
+    </section>
+
     <script src="./colorpicker.js"></script>
     <script src="./getfromapi.js"></script>
     <script src="./weather_api.js"></script>
