@@ -1,7 +1,17 @@
 const WHATISMY_API_URL = "https://ipapi.co/";
-let lon = 0;
-let lat = 0;
-const map = new OpenLayers.Map("response-map", { controls: [] });
+let lon = 60;
+let lat = 25;
+let zoom = 9;
+
+// använt mig av ett färdigt bibliotek och koden för dess användning är långt från: https://leafletjs.com/examples/quick-start/
+var map = L.map('response-map').setView([lon,lat],zoom);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        minZoom: 5,
+        maxZoom: 10,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+var marker = L.marker([lat, lon]).addTo(map);
+
 const countryHTML = document.getElementById("response-country");
 const cityHTML = document.getElementById("response-city");
 const regionHTML = document.getElementById("response-region");
@@ -9,24 +19,16 @@ const inputHTML = document.getElementById("input-ip");
 const youripHTML = document.getElementById("your-ip");
 
 function updateMap() {
-    // använt mig av ett färdigt bibliotek och koden för dess användning är lånad från: https://openlayers.org/
-    map.addLayer(new OpenLayers.Layer.OSM());
-    var lonLat = new OpenLayers.LonLat( lon , lat )
-        .transform(
-          new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-          map.getProjectionObject() // to Spherical Mercator Projection
-        );
-    var zoom=10;
-    var markers = new OpenLayers.Layer.Markers( "Markers" );
-    map.addLayer(markers);
-    markers.addMarker(new OpenLayers.Marker(lonLat));
-    map.setCenter (lonLat, zoom);
+    const latlng = new L.LatLng(lat,lon);
+    marker.setLatLng(latlng)
+    marker.bindPopup("<b>Your ip is located around here!</b>")
+    map.setView(marker.getLatLng(),zoom);
 }
 updateMap()
 
 async function whatsmyip() {
-    const url = WHATISMY_API_URL+"json";
-    await fetch(url)
+    const Yoururl = WHATISMY_API_URL+"json";
+    await fetch(Yoururl)
         .then(resp => resp.json())
         .then(data => {
             console.log(data)
@@ -44,13 +46,12 @@ async function whatsmyip() {
 whatsmyip()
 
 async function openmap() {
-    console.log("openmap()")
-    let url = WHATISMY_API_URL+"json";
+    let checkurl = WHATISMY_API_URL+"json";
     if (inputHTML.value != null || !isEmpty(inputHTML.value)) {
         console.log("Empty")
-        url = WHATISMY_API_URL+(inputHTML.value)+"/json";
+        checkurl = WHATISMY_API_URL+(inputHTML.value)+"/json";
     }
-    await fetch(url)
+    await fetch(checkurl)
         .then(resp => resp.json())
         .then(data => {
             console.log(data)
@@ -75,7 +76,10 @@ async function openmap() {
         })
         .catch(error => {
             console.log(error);
-            inputHTML.placeholder = "It seems i couldn't find this ip"
+            inputHTML.placeholder = "Something went wrong try to refresh the page"
+            cityHTML.innerHTML = ""
+            regionHTML.innerHTML = ""
+            countryHTML.innerHTML = ""
         })
 }
 openmap()

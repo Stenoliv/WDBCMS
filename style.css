@@ -74,6 +74,11 @@ body {
 } 
 
 /*Whats my ip*/
+.apiview .whats-my-ip-container {
+    flex: 1;
+    min-width: 500px;
+    margin:auto;
+}
 .whats-my-ip-container {
     background-color: var(--whatsmyipcolor);
     display: flex;
@@ -116,9 +121,8 @@ body {
     text-align: center;
 }
 #response-map {
-    aspect-ratio: 1;
-    width: 80%;
-    height: calc(100vh-10px);
+    width: 250px;
+    height: 250px;
 }
 
 /*Currency Calculator*/
