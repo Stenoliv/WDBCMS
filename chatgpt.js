@@ -28,7 +28,6 @@ function checkIfAPIKeySet() {
 
 async function askQuestion() {
     if (checkIfAPIKeySet()) {
-        console.log("APIkeySet")
         const KEY = localStorage.getItem(API_KEY_STORAGE_NAME);
 
         questionStatusHTML.innerHTML = "I am thinking"
@@ -39,16 +38,22 @@ async function askQuestion() {
         })
         .then(request => request.json())
         .then(data => {
+            console.log(data)
+            if (!data.hasOwnProperty('answer')) {
+                answerHTML.innerHTML = `${data.msg}`
+                questionStatusHTML.innerHTML = "Waiting for you to ask me something"
+                questionHTML.value = ""
+            } else {
             lastQuestion = questionHTML.value;
             questionStatusHTML.innerHTML = "You asked me this: " + lastQuestion;
             questionHTML.value = ""
 
-            console.log("all done!")
-            console.log(data);
             answerHTML.innerHTML = data.answer;
+        }
         })
         .catch(error => {
             console.log(error)
+            questionStatusHTML.innerHTML = "It seams that i have some problems on my side"
         })
     } else {
         console.log("No api key set!")

@@ -66,6 +66,7 @@ async function getCurrencys() {
         })
         .catch(error => {
             console.log(error)
+            output.innerHTML = "I might be offline"
         })
 }
 

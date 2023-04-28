@@ -30,11 +30,15 @@ async function whatsmyip() {
         .then(resp => resp.json())
         .then(data => {
             console.log(data)
-
+            if (data.error != true)
             youripHTML.innerHTML = `${data.ip}`
+            else {
+                youripHTML.innerHTML = "Couldn't find your ip"
+            }
         })
         .catch(error => {
             console.log(error);
+            youripHTML.innerHTML = "Something went wrong on our side"
         })
 }
 whatsmyip()
@@ -50,18 +54,28 @@ async function openmap() {
         .then(resp => resp.json())
         .then(data => {
             console.log(data)
-            lon = data.longitude;
-            lat = data.latitude;
-            updateMap()
-
-            countryHTML.innerHTML = `${data.country_name}`;
-            cityHTML.innerHTML = `${data.city}`;
-            regionHTML.innerHTML = `${data.region}`
-
-            inputHTML.placeholder = `${data.ip}`
+            if(data.error != true) {
+                lon = data.longitude;
+                lat = data.latitude;
+                updateMap()
+                
+                countryHTML.innerHTML = `That ip is in: ${data.country_name}`;
+                cityHTML.innerHTML = `${data.city}`;
+                regionHTML.innerHTML = `${data.region}`
+    
+                inputHTML.placeholder = `${data.ip}`
+            } else {
+                updateMap()
+                inputHTML.value = ""
+                inputHTML.placeholder = "Couldn't find this ip, sorry!"
+                cityHTML.innerHTML = ""
+                regionHTML.innerHTML = ""
+                countryHTML.innerHTML = ""
+            }
         })
         .catch(error => {
             console.log(error);
+            inputHTML.placeholder = "I seams i couldn't find this ip"
         })
 }
 openmap()
