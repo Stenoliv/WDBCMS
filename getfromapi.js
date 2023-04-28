@@ -17,8 +17,9 @@ document.querySelector("#searchfordrink").addEventListener("click",e => {getdrin
         $drink = document.getElementById('drinkname').value;
         const resp = await fetch ("https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+$drink);
         const respJson = await resp.json();
-
-        document.querySelector('#drinkrecepie').innerHTML =`
+        if(respJson.drinks == null)document.querySelector('#drinkrecepie').innerHTML =`No drink with that name was found! Try someting else!`
+        else {
+            document.querySelector('#drinkrecepie').innerHTML =`
         <h2>Your drink is here</h2><p>Name: ${respJson.drinks[0].strDrink}</p><p>It belongs in category: ${respJson.drinks[0].strCategory}</p><p>Instructions: ${respJson.drinks[0].strInstructions}</p>`
    
         for(let i = 1; i<=15; i++){
@@ -27,6 +28,7 @@ document.querySelector("#searchfordrink").addEventListener("click",e => {getdrin
             measurment = respJson.drinks[0]["strMeasure" + i]
             if(ingredient != null && measurment != null)list.innerHTML +=`<p>${ingredient} ${measurment}</p>` 
             else if(ingredient != null)list.innerHTML +=`<p>${ingredient}</p>` 
+        }
         }
     }catch{
         document.querySelector('#drinkrecepie').innerHTML =`Error while trying to get drink!`

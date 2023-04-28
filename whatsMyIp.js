@@ -75,7 +75,7 @@ async function openmap() {
         })
         .catch(error => {
             console.log(error);
-            inputHTML.placeholder = "I seams i couldn't find this ip"
+            inputHTML.placeholder = "It seems i couldn't find this ip"
         })
 }
 openmap()
