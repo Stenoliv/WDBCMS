@@ -19,11 +19,9 @@ function updateAPIkey(update) {
     if (update) {
         localStorage.setItem(WEATHER_API_KEY_STORAGE, weatherAPI.value);
         localStorage.setItem(ChatGPT_API_KEY_STORAGE, chatgptAPI.value);
-        console.log("updated!")
     } else {
         weatherAPI.value = localStorage.getItem(WEATHER_API_KEY_STORAGE);
         chatgptAPI.value = localStorage.getItem(ChatGPT_API_KEY_STORAGE);
-        console.log("set values!")
     }
 }
 
