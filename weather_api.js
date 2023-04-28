@@ -1,7 +1,7 @@
 let userLocation = navigator.geolocation;
 function lonlat() {
     if(userLocation) {
-        userLocation.getCurrentPosition(located);
+        userLocation.getCurrentPosition(located,errorCodes);
     }else {
         "Could not get location!";
     }
@@ -41,5 +41,19 @@ async function getWeather(){
 getWeather()
 }
 lonlat();
+//inspirerat av https://stackoverflow.com/questions/14862019/check-if-location-setting-has-been-turned-off-in-users-browser
+  function errorCodes(error) {
+    switch(error.code) {
+      case error.PERMISSION_DENIED:
+        document.querySelector('#weather').innerHTML = "Cannot show weather because you denied usage of location"
+        break;
+      case error.POSITION_UNAVAILABLE:
+        document.querySelector('#weather').innerHTML = "Location information is not available."
+        break;
+      case error.UNKNOWN_ERROR:
+        document.querySelector('#weather').innerHTML = "Unkown error!"
+        break;
+    }
+  }
 
     
