@@ -1,8 +1,87 @@
+@font-face {
+    font-family: Sigmar;
+    src: url('./fonts/Sigmar-Regular.otf') format('opentype');
+    src: url('./fonts/Sigmar-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: Play;
+    src: url('./fonts/Play-Regular.otf') format('opentype');
+    src: url('./fonts/Play-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: FjallaOne;
+    src: url('./fonts/FjallaOne-Regular.otf') format('opentype');
+    src: url('./fonts/FjallaOne-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: CastoroTitling;
+    src: url('./fonts/CastoroTitling-Regular.otf') format('opentype');
+    src: url('./fonts/CastoroTitling-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: BrunoAce;
+    src: url('./fonts/BrunoAceSC-Regular.otf') format('opentype');
+    src: url('./fonts/BrunoAceSC-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: JosefinSans;
+    src: url('./fonts/JosefinSans-VariableFont_wght.otf') format('opentype');
+    src: url('./fonts/JosefinSans-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: Bebas;
+    src: url('./fonts/BebasNeue-Regular.otf') format('opentype');
+    src: url('./fonts/BebasNeue-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#font-bebasneue{
+    font-family: Bebas;
+}
+#font-brunoace {
+    font-family: BrunoAce;
+}
+#font-castorotitling {
+    font-family: CastoroTitling;
+}
+#font-fjallaone {
+    font-family: FjallaOne;
+}
+#font-josefinsans {
+    font-family: JosefinSans;
+}
+#font-play {
+    font-family: Play;
+}
+#font-sigmar {
+    font-family: Sigmar;
+}
+
 :root {
     --calcCurrencyColor: #96CD86;
     --whatsmyipcolor: rgb(178, 184, 233);
     --chatgptcolor:#b285ec; 
+    --font-family:Sigmar;
+    --font-size:12px;
 }
+* {
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+}
+
 
 body {
     display: flex;
