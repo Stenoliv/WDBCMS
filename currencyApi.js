@@ -4,7 +4,6 @@ await fetch('currency-info.json')
     .then(response => response.json())
     .then(data => {
         currencyInfo = data;
-        console.log(data)
         getCurrencys();
     })
     .catch(error => {
@@ -24,16 +23,12 @@ let rates = {};
 let LATEST_DATA = "";
 
 async function getCurrencys() {
-    console.log("getCurrencys()")
-
     if (!localStorage.getItem(API_LATEST_DATA)) {
         LATEST_DATA = {from:'USD',to:'EUR'}
         localStorage.setItem(API_LATEST_DATA, JSON.stringify(LATEST_DATA));
     } else {
         LATEST_DATA = JSON.parse(localStorage.getItem(API_LATEST_DATA));
     }
-    console.log(LATEST_DATA);
-
     await fetch(API_URL + "/latest/" + LATEST_DATA.from)
         .then(request => request.json())
         .then(resp => {
@@ -82,7 +77,6 @@ async function updateFromCurrency() {
 
 async function updateExchange() {
     const exchangedValue = input.value * rates[select2.value];
-    console.log(exchangedValue);
 
     LATEST_DATA.from = select1.value;
     LATEST_DATA.to = select2.value;

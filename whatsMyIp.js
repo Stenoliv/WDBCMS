@@ -31,7 +31,6 @@ async function whatsmyip() {
     await fetch(Yoururl)
         .then(resp => resp.json())
         .then(data => {
-            console.log(data)
             if (data.error != true)
             youripHTML.innerHTML = `${data.ip}`
             else {
@@ -48,13 +47,11 @@ whatsmyip()
 async function openmap() {
     let checkurl = WHATISMY_API_URL+"json";
     if (inputHTML.value != null || !isEmpty(inputHTML.value)) {
-        console.log("Empty")
         checkurl = WHATISMY_API_URL+(inputHTML.value)+"/json";
     }
     await fetch(checkurl)
         .then(resp => resp.json())
         .then(data => {
-            console.log(data)
             if(data.error != true) {
                 lon = data.longitude;
                 lat = data.latitude;

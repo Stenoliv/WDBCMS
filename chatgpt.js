@@ -8,7 +8,6 @@ var lastQuestion = "";
 
 questionHTML.addEventListener("keypress", (e) => {
     if (e.key === 'Enter') {
-        console.log("ENTER pressed");
         askQuestion();
     }
 })
@@ -17,10 +16,8 @@ questionHTML.addEventListener("keypress", (e) => {
 function checkIfAPIKeySet() {
     if (!localStorage.getItem(API_KEY_STORAGE_NAME))
     {
-        console.log("no api key");
         return false;
     } else {
-        console.log("api key");
         return true;
     }
 }
@@ -38,7 +35,6 @@ async function askQuestion() {
         })
         .then(request => request.json())
         .then(data => {
-            console.log(data)
             if (!data.hasOwnProperty('answer')) {
                 answerHTML.innerHTML = `${data.msg}`
                 questionStatusHTML.innerHTML = "Waiting for you to ask me something"
@@ -56,7 +52,6 @@ async function askQuestion() {
             questionStatusHTML.innerHTML = "It seams that i have some problems on my side"
         })
     } else {
-        console.log("No api key set!")
         answerHTML.innerHTML = "No API key found!";
     }
 }
@@ -64,7 +59,6 @@ async function askQuestion() {
 
 document.getElementById("btn-submit-question").addEventListener('click', event => {
     askQuestion()
-    console.log("Asking Question")
 })
 
 questionStatusHTML.addEventListener('click', e => {
