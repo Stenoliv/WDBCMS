@@ -190,7 +190,23 @@
         </div>
         <script src="./todoapp.js"></script>
     </section>
-
+    <section class="todo_edit_box hidden">
+        <div class="todo_edit_container">
+            <h2>Edit todo entry!</h2>
+            <div>
+                <div class="toDoItemEdit">
+                    <input id="todo_edit_title"></input>
+                    <select id="todo_edit_category"></select>
+                    <input type="date" id="todo_edit_duedate"></input>
+                    <input type="checkbox" id="todo_edit_done">
+                </div>
+                <div>
+                    <button id="todo_edit_submit">Submit Changes</button>
+                    <button onclick="closeEditBox()">Close Edit Box</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script src="./colorpicker.js"></script>
     <script src="./getfromapi.js"></script>
