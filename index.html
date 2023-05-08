@@ -27,6 +27,14 @@
                     <span>Weather API key:</span>
                     <input type="text" id="weather-api-key">
                 </div>
+                <div>
+                    <span>Todo API Key:</span>
+                    <input type="text" id="todo-api-key">
+                </div>
+                <div>
+                    <span>Todo API Username:</span>
+                    <input type="text" id="todo-api-username">
+                </div>
                 <div id="divred">
                     <label>R</label>
                     <input type="range" id="red" value="0" min="0" max="255">
@@ -157,9 +165,14 @@
         <script src="./whatsMyIp.js"></script>
     </section>
 <!-- Projekt 2 todo app -->
-    <section class="apiview">
+    <section class="apiview bigview">
         <div id="todoapp">
-            <h2>Your To Do List</h2>
+            <div>
+                <h2>Your To Do List</h2>
+                <input type="text" name="user" id="username" placeholder="Username">
+                <input type="text" name="email" id="email" placeholder="Email">
+                <button onclick="request_new_api()">Request new api</button>
+            </div>
             <div id="toDoList">
 
             </div>
