@@ -41,6 +41,23 @@
                     <label>B</label>
                     <input type="range" id="blue" value="0" min="0" max="255">
                 </div>
+                <div>
+                    <span>Font-Family: </span>
+                    <select name="Font" id="page-font">
+                        <option value="Bebas" id="font-bebasneue">BebasNeue</option>
+                        <option value="BrunoAce" id="font-brunoace">BrunoAce</option>
+                        <option value="CastoroTitling" id="font-castorotitling">CastoroTitling</option>
+                        <option value="FjallaOne" id="font-fjallaone">FjallaOne</option>
+                        <option value="JosefinSans" id="font-josefinsans">JosefinSans</option>
+                        <option value="Play" id="font-play">Play</option>
+                        <option value="Sigmar" id="font-sigmar">Sigmar</option>
+                    </select>
+                </div>
+                <div>
+                    <span>Font-Size: </span>
+                    <input type="number" id="font-size" value="15" min="12" max="24">
+                </div>
+                <script src="./fontchanger.js"></script>
             </div>
         </div>
         <img src="./gearsIcon.png" onclick="changeMenu()" id="btn-settings">
