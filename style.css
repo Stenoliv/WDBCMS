@@ -15,6 +15,20 @@ body {
     margin-top: 80px;
     background-color: rgb(210, 255, 242);
 }
+/*todoapp style*/
+#todoapp{
+    background-color: rgb(255, 195, 105);
+    border: 4px solid black;
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 16px;
+}
+#newtodo{
+    background-color: rgb(255, 181, 121);
+    border: 2px solid black;
+    padding: 4px;
+    width: fit-content;
+}
 
 #bored{
     background-color: rgb(211, 193, 255);
