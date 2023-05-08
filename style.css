@@ -101,13 +101,58 @@ body {
     border-radius: 8px;
     padding: 8px;
     margin-bottom: 16px;
-}
-#newtodo{
-    background-color: rgb(255, 181, 121);
-    border: 2px solid black;
-    padding: 4px;
     width: fit-content;
 }
+#newtodo{
+    background-color: rgb(255, 163, 101);
+    border: 2px solid black;
+    padding: 4px;
+    margin: 4px;
+    width: fit-content;
+}
+.toDoItem{
+    background-color: rgb(255, 191, 131);
+    border: 2px solid black;
+    padding: 4px;
+    margin: 4px;
+    display: flex;
+
+}
+.toDoItem p {
+    flex: 7;
+}
+.toDoItem div{
+    margin: auto;
+    flex: 1;
+    align-items: right;
+}
+.categoryTag{
+    border: 2px solid rgb(0, 0, 0);
+    padding-left:8px;
+    padding-right: 8px;
+    border-radius: 16px;
+}
+.Urgent{
+    background-color: red;
+}
+.Cleaning{
+    background-color: aquamarine;
+}
+.Work{
+    background-color: rgb(155, 155, 155);
+}
+.Gardening{
+    background-color: rgb(93, 192, 90);
+}
+.Shopping{
+    background-color: rgb(255, 159, 234);
+}
+
+
+
+
+
+
 
 #bored{
     background-color: rgb(211, 193, 255);

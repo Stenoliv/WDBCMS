@@ -48,11 +48,22 @@ getTodoOptions()
 
 async function getToDos(){
     try{
-        const resp = await fetch("http://128.214.253.222:8438/todos/?api_key="+API_KEY+"&"+USERNAME);
+        const resp = await fetch("http://128.214.253.222:8438/todos?api_key="+API_KEY+"&username="+USERNAME);
         const respJson = await resp.json();
+        for(let i =0;Object.keys(respJson.result).length > i;i++){
+            let jaahas ="";
+            jaahas +=`<div class="toDoItem"><p>${respJson.result[i].title} <span class="categoryTag ${respJson.result[i].category_name}">${respJson.result[i].category_name}</span>
+            Due: ${respJson.result[i].due_date}</p>`
+            if(respJson.result[i].done == false)jaahas+=`<div><img src="./warning-4-24.png" class="notDoneTaskImg"></img>`;
+            if(respJson.result[i].done == true)jaahas+=`<img src="./ok-24.png" class="doneTaskImg"></img></div></div>`;
+            document.querySelector("#toDoList").innerHTML += jaahas
+        }
         
-    }
-    catch{
 
     }
+    catch{
+        document.querySelector("#toDoList").innerHTML = `<h3>Something went wrong!</h3>`
+    }
 }
+
+getToDos();
