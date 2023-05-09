@@ -147,7 +147,7 @@ body {
     margin-left: 30px;
 }
 .toDoItem p {
-    flex:1;
+    flex:1.5;
     pointer-events: none;
     max-width: 220px;
     overflow-x: auto;
@@ -164,10 +164,13 @@ body {
     justify-content: center;
     align-items: center;
 }
-.deleteTask {
+img.deleteTask {
     cursor: pointer;
 }
-.notDoneTask {
+img.notDoneTask {
+    cursor: pointer;
+}
+img.taskOverdue {
     cursor: pointer;
 }
 
@@ -231,7 +234,13 @@ body {
     left: -220px;
   }
   .tooltiptext.doneTask {
-    left: -180px;
+    left: -185px;
+  }
+  .tooltiptext.taskOverdue {
+    left: -260px;
+  }
+  .tooltip .tooltiptext.taskOverdue::after   {
+    content: " - Task Overdue";
   }
   .tooltip .tooltiptext.notDoneTask::after   {
     content: " - Not Done";

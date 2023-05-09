@@ -81,7 +81,7 @@ async function getToDos(){
 
             if (new Date(elem.due_date) < new Date() && elem.done == false) 
             {
-                jaahas +=` notDoneTask">Status: </span><img src="./error-24.png" class="notDoneTask"></img></div>`
+                jaahas +=` taskOverdue">Status: </span><img src="./error-24.png" class="taskOverdue"></img></div>`
             } else if (elem.done == false) 
             {
                 jaahas +=` notDoneTask">Status: </span><img src="./warning-4-24.png" class="notDoneTask"></img></div>`
@@ -97,14 +97,20 @@ async function getToDos(){
         document.querySelectorAll(".toDoItem").forEach(div => {
             try {
                 // If not checked query for check done 
-            div.querySelector(".notDoneTask").addEventListener('click', () => {
+            div.querySelector("img.notDoneTask").addEventListener('click', () => {
                 const data = {done:true}
                 checkDone(div.dataset.todo_id,data)
             })}
-            catch {
-            } 
+            catch {}
+            try {
+                // If not checked query for check done 
+                div.querySelector("img.taskOverdue").addEventListener('click', () => {
+                const data = {done:true}
+                checkDone(div.dataset.todo_id,data)
+            })}
+            catch {}
             // DELETE task
-            div.querySelector(".deleteTask").addEventListener('click', () => {
+            div.querySelector("img.deleteTask").addEventListener('click', () => {
                 if(confirm("You sure you want to delete this task?"))
                     deleteTask(div.dataset.todo_id)
             })
@@ -224,7 +230,7 @@ async function updateToDoTask(id, changedData) {
         .then(resp => resp.json())
         .then(data => {
             console.log(data);
-            getToDos()
+            updateOldDiv(data);
         })
         .catch(error => {
             console.log(error)
@@ -252,4 +258,8 @@ function submitChanges() {
     updateToDoTask(edit_id, newToDoEntry)
     closeEditBox()
     return;
+}
+
+function updateOldDiv(newData) {
+    edit_div.querySelector(".").innerHTML = newData.title;
 }
