@@ -195,17 +195,17 @@
     </section>
     <section class="todo_edit_box hidden">
         <div class="todo_edit_container">
-            <h2>Edit todo entry!</h2>
+            <h2 id="editconttitle">Edit todo entry!</h2>
             <div>
                 <div class="toDoItemEdit">
                     <input id="todo_edit_title"></input>
                     <select id="todo_edit_category"></select>
                     <input type="date" id="todo_edit_duedate"></input>
-                    <input type="checkbox" id="todo_edit_done">
+                    <span id="checkboxtext">Mark task done<input type="checkbox" id="todo_edit_done"></span>
                 </div>
-                <div>
+                <div id="buttons_edit_container">
                     <button id="todo_edit_submit">Submit Changes</button>
-                    <button onclick="closeEditBox()">Close Edit Box</button>
+                    <button id="close_edit_box" onclick="closeEditBox()">Close Edit Box</button>
                 </div>
             </div>
         </div>

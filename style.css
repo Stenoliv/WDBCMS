@@ -134,10 +134,26 @@ body {
     background-color: blanchedalmond;
     border: solid 2px black;
 }
+#todo_edit_title, #todo_edit_category, #todo_edit_duedate,#checkboxtext{
+    background-color: blanchedalmond;
+    border: solid 2px black;
+    margin-right: 4px;
+    padding: 2px;
+    cursor: pointer;
+}
 #dueDateInput, #sumbitnewtaskbtn{
     background-color: blanchedalmond;
     border: solid 2px black;
     margin-top: 4px;
+}
+#todo_edit_submit, #close_edit_box{
+    background-color: blanchedalmond;
+    border: solid 2px black;
+    margin-top: 4px;
+}
+#todo_edit_submit:hover, #close_edit_box:hover,#todo_edit_done{
+    background-color: rgb(255, 186, 122);
+    cursor: pointer;
 }
 .toDoItem{
     background-color: rgb(180, 161, 133);
@@ -200,7 +216,7 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     margin: auto;
     margin-left: 15px;
     margin-right: 15px;
-    text-align: center;
+
 }
 .Urgent{
     background-color: rgb(255, 47, 47);
@@ -298,16 +314,18 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     flex-direction: column;
 }
 .toDoItemEdit{
-    background-color: rgb(255, 191, 131);
-    border: 2px solid black;
     margin: 4px;
     display: flex;
     margin-left: 15px;
     margin-right: 15px;
     pointer-events: visible;
 }
-
-
+#buttons_edit_container{
+    margin-left: 15px;
+}
+#editconttitle{
+    text-align: center;
+}
 
 /*________*/
 #bored{
