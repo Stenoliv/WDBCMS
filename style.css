@@ -103,6 +103,32 @@ body {
     border-radius: 8px;
     padding: 8px;
     margin-bottom: 16px;
+    text-align: center;
+}
+#getKeyBox{
+    border: 2px solid black;
+    padding: 8px;
+    margin: 4px;
+    border-radius: 8px;
+    width: fit-content;
+    background-color: rgb(180, 161, 133);
+}
+#username{
+    background-color: blanchedalmond;
+    border: solid 2px black;
+    margin: 4px;
+}
+#email{
+    background-color: blanchedalmond;
+    border: solid 2px black;
+}
+#request_new_api{
+    background-color: blanchedalmond;
+    border: solid 2px black;
+}
+#request_new_api:hover{
+    background-color: rgb(255, 186, 122);
+    cursor: pointer;
 }
 #toDoList {
     max-height: 300px;
@@ -110,19 +136,43 @@ body {
     overflow-x: hidden;
 }
 #newtodo{
-    background-color: rgb(255, 163, 101);
+    background-color: rgb(180, 161, 133);
     border: 2px solid black;
+    border-radius: 8px;
     padding: 4px;
     margin: 4px;
     width: fit-content;
 }
+#newToDotitle{
+    background-color: blanchedalmond;
+    border: solid 2px black;
+}
+#todocategory{
+    background-color: blanchedalmond;
+    border: solid 2px black;
+}
+#dueDateInput{
+    background-color: blanchedalmond;
+    border: solid 2px black;
+    margin-top: 4px;
+}
+#sumbitnewtaskbtn{
+    background-color: blanchedalmond;
+    border: solid 2px black;
+    margin-top: 4px;
+}
+#sumbitnewtaskbtn:hover{
+    background-color: rgb(255, 186, 122);
+    cursor: pointer;
+}
 .toDoItem{
-    background-color: rgb(255, 191, 131);
+    background-color: rgb(180, 161, 133);
     border: 2px solid black;
     margin: 4px;
     display: flex;
     flex-direction: row;
     pointer-events: visible;
+    border-radius: 8px;
 }
 .toDoItem:hover {
     scale: 1;
@@ -186,19 +236,22 @@ img.taskOverdue {
     text-align: center;
 }
 .Urgent{
-    background-color: red;
+    background-color: rgb(255, 47, 47);
 }
 .Cleaning{
     background-color: aquamarine;
 }
 .Work{
-    background-color: rgb(155, 155, 155);
+    background-color: rgb(255, 168, 134);
 }
 .Gardening{
     background-color: rgb(93, 192, 90);
 }
 .Shopping{
     background-color: rgb(255, 159, 234);
+}
+.Cooking{
+    background-color: rgb(255, 243, 72);
 }
 
 /* Lånad kod från w3schools: https://www.w3schools.com/css/css_tooltip.asp */

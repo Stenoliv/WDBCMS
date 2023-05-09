@@ -167,26 +167,26 @@
 <!-- Projekt 2 todo app -->
     <section class="apiview bigview">
         <div id="todoapp">
-            <div>
-                <h2>Your To Do List</h2>
+            <h2>Your To Do List</h2>
+            <div id="getKeyBox">
                 <input type="text" name="user" id="username" placeholder="Username">
                 <input type="text" name="email" id="email" placeholder="Email">
-                <button onclick="request_new_api()">Request new api</button>
+                <button onclick="request_new_api()" id="request_new_api">Request new api</button>
             </div>
             <div id="toDoList">
                 
             </div>
             <div id="newtodo">
-                <h3>Add new to do item</h3>
+                <h3>Add new task to be done</h3>
                 <div id="addToDo">
-                    <input type="text" placeholder="Add new task to be done" id="newToDotitle">
+                    <input type="text" placeholder="Description of the task" id="newToDotitle">
                     <select name="category" id="todocategory">
                         <option disabled selected>Choose category</option>
                     </select>
                     <br>
                     Due date:
                     <input type="date" id="dueDateInput">
-                    <button id="sumbitnewtaskbtn" type="submit">Save notation</button>
+                    <button id="sumbitnewtaskbtn" type="submit">Save task</button>
                     <br>
                 </div>
             </div>
