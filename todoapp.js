@@ -258,6 +258,7 @@ async function newToDoTask(){
         .then(resp => resp.json())
         .then(data => {
             addNewDiv(data)
+            document.querySelector("#addToDo").innerHTML += data.message
         })
 }
 
