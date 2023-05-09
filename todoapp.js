@@ -1,4 +1,4 @@
-const TODO_API_URL = "http://128.214.253.222:8355";
+const TODO_API_URL = "http://128.214.253.222:8438";
 
 let usernameHTML = document.getElementById("username");
 let emailHTML = document.getElementById("email");
@@ -218,3 +218,20 @@ async function updateToDoTask(id, changedData) {
             console.log(data);
         })
 }
+document.querySelector("#sumbitnewtaskbtn").addEventListener('click', newToDoTask);
+async function newToDoTask(){
+    let title = document.querySelector("#newToDotitle").value;
+    let category = document.querySelector("#todocategory").value;
+    let newduedate = document.querySelector("#dueDateInput").value;
+    newduedate = new Date(newduedate);
+    let inputdata = {title:title,category_id:category, due_date:newduedate}
+    console.log(inputdata);
+    
+    await fetch(TODO_API_URL+"/todos"+"?api_key="+API_KEY+"&username="+USERNAME,{method: 'POST',
+        headers:{'Content-Type': 'application/json' }, 
+        body: JSON.stringify(inputdata)})
+        .then(resp =>resp.json())
+        .then(data => {document.querySelector("#addToDo").innerHTML += data.message})
+}
+
+

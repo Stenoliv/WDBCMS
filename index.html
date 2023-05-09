@@ -178,14 +178,17 @@
             </div>
             <div id="newtodo">
                 <h3>Add new to do item</h3>
-                <form>
-                    <input type="text" placeholder="Add new task to be done">
+                <div id="addToDo">
+                    <input type="text" placeholder="Add new task to be done" id="newToDotitle">
                     <select name="category" id="todocategory">
                         <option disabled selected>Choose category</option>
                     </select>
                     <br>
-                    <button>Save notation</button>
-                </form>
+                    Due date:
+                    <input type="date" id="dueDateInput">
+                    <button id="sumbitnewtaskbtn" type="submit">Save notation</button>
+                    <br>
+                </div>
             </div>
         </div>
         <script src="./todoapp.js"></script>
