@@ -159,8 +159,10 @@ body {
     background-color: rgb(180, 161, 133);
     border: 2px solid black;
     margin: 4px;
+    max-height: 50px;
     display: flex;
     flex-direction: row;
+    align-items: center;
     pointer-events: visible;
     border-radius: 8px;
 }
@@ -188,13 +190,12 @@ body {
 }
 .toDoItem p {
     flex:1.5;
+    font-size: 16px;
     pointer-events: none;
-    max-width: 220px;
-    overflow-x: auto;
-    overflow-y: hidden;
 }
 .toDoItem span {
     flex: 0.75;
+    font-size: 15px;
     pointer-events: none;
 }
 .toDoItem div{
@@ -206,6 +207,9 @@ body {
 }
 img.deleteTask, img.notDoneTask, img.taskOverdue {
     cursor: pointer;
+}
+.due_date-done {
+    text-decoration:line-through;
 }
 .categoryTag{
     border: 2px solid rgb(0, 0, 0);
@@ -240,13 +244,12 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
 /* Lånad kod från w3schools: https://www.w3schools.com/css/css_tooltip.asp */
 .tooltip {
     position: relative;
-    width: fit-content;
     margin: auto;
   }
   
   .tooltip .tooltiptext {
     visibility: hidden;
-    width: fit-content;
+    width: max-content;
     padding: 5px;
     padding-left: 30px;
     padding-right: 30px;
@@ -254,26 +257,15 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    
   
     /* Position the tooltip */
     position: absolute;
-    left: -100px;
+    right: 75%;
     z-index: 1;
   }
-  
   .tooltip:hover .tooltiptext {
     visibility: visible;
     pointer-events: none;
-  }
-  .tooltiptext.notDoneTask {
-    left: -220px;
-  }
-  .tooltiptext.doneTask {
-    left: -185px;
-  }
-  .tooltiptext.taskOverdue {
-    left: -260px;
   }
   .tooltip .tooltiptext.taskOverdue::after   {
     content: " - Task Overdue";
@@ -291,7 +283,7 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     justify-content: center;
     align-items: center;
     position: fixed;
-    pointer-events: none;
+    pointer-events:stroke;
     box-sizing: border-box;
     right: 0;
     top: 0;
@@ -312,6 +304,8 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     margin-bottom: 16px;
     display: flex;
     flex-direction: column;
+    pointer-events: all;
+    z-index: 100;
 }
 .toDoItemEdit{
     margin: 4px;
