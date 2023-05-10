@@ -220,7 +220,9 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     margin: auto;
     margin-left: 15px;
     margin-right: 15px;
-
+}
+.todo-request-api {
+    width: auto;
 }
 .Urgent{
     background-color: rgb(255, 47, 47);

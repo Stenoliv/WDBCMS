@@ -5,6 +5,8 @@ let emailHTML = document.getElementById("email");
 var API_KEY = localStorage.getItem(ToDo_API_KEY_STORAGE);
 var USERNAME = localStorage.getItem(ToDo_API_USERNAME_STORAGE);
 
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
 var edit_id;
 var edit_div;
 
@@ -24,6 +26,7 @@ async function request_new_api() {
         email: emailHTML.value
     }
 
+    const response_msg = document.querySelector(".todo-request-api");
     await fetch(TODO_API_URL + "/todos/register", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -31,16 +34,32 @@ async function request_new_api() {
     })
         .then(resp => resp.json())
         .then(data => {
-            if (data.hasOwnProperty('api_key')) {
+            if(data.result == "failed") {
+                response_msg.innerHTML = data.message;
+                response_msg.classList.remove('hidden');
+                hideMsg(response_msg, 5000)
+            } else {
                 localStorage.setItem(ToDo_API_KEY_STORAGE, data.api_key);
                 localStorage.setItem(ToDo_API_USERNAME_STORAGE, usernameHTML.value);
                 API_KEY = data.api_key;
                 USERNAME = usernameHTML.value;
+                response_msg.innerHTML = data.message;
+                response_msg.classList.remove('hidden');
+                hideMsg(response_msg, 5000);
+                getToDos();
             }
         })
         .catch(error => {
-            console.log("ERROR: Failed")
+            console.log(error)
         })
+
+        
+}
+
+async function hideMsg(msg, ms) {
+    await delay(ms);
+    msg.classList.add('hidden');
+    msg.innerHTML = "";
 }
 
 async function getTodoOptions() {
@@ -64,7 +83,6 @@ async function getToDos() {
             throw new Error(respJson.result)
         }
         // Add all the todos to the list
-
 
         document.querySelector("#toDoList").innerHTML = ""
         respJson.result.forEach(elem => {
@@ -112,16 +130,12 @@ function addToDoButtonFunction() {
             // If not checked query for check done 
             doneIMG.addEventListener('click', btn_notDone)
         }
-        catch (error) {
-            console.log(error)
-        }
+        catch (error) {}
         try {
             // If not checked query for check done 
             overdueIMG.addEventListener('click', btn_overdue)
         }
-        catch (error) {
-            console.log(error)
-        }
+        catch (error) {}
         // DELETE task
         deleteIMG.addEventListener('click', btn_delete)
         // UPDATE task
@@ -263,9 +277,17 @@ async function updateToDoTask(id, changedData) {
         .then(resp => resp.json())
         .then(data => {
             updateOldDiv(data);
+            const msg = document.querySelector(".todo-request-api");
+            msg.innerHTML = data.message;
+            msg.classList.remove('hidden');
+            hideMsg(msg, 3500)
         })
         .catch(error => {
             console.log(error)
+            const msg = document.querySelector(".todo-request-api");
+            msg.innerHTML = error;
+            msg.classList.remove('hidden');
+            hideMsg(msg, 3500)
         })
 }
 
@@ -285,7 +307,16 @@ async function newToDoTask() {
         .then(resp => resp.json())
         .then(data => {
             addNewDiv(data)
-            document.querySelector("#addToDo").innerHTML += data.message
+            const msg = document.querySelector(".todo-submitNew-info");
+            msg.innerHTML = data.message;
+            msg.classList.remove('hidden');
+            hideMsg(msg, 3000)
+        })
+        .catch(error => {
+            const msg = document.querySelector(".todo-submitNew-info");
+            msg.innerHTML = error;
+            msg.classList.remove('hidden');
+            hideMsg(msg, 6000)
         })
 }
 
@@ -298,18 +329,18 @@ function submitChanges() {
 function updateOldDiv(newData) {
     const category_elem = edit_div.querySelector(".categoryTag");
 
-    edit_div.querySelector(".todo-title").innerHTML = newData.result.title;
+    edit_div.querySelector(".todo-title").innerHTML = newData.data.title;
     category_elem.classList.remove(category_elem.innerHTML);
-    category_elem.classList.add(newData.result.category_name);
-    category_elem.innerHTML = newData.result.category_name;
-    edit_div.querySelector(".todo-due_date").innerHTML = "Due: " + newData.result.due_date;
+    category_elem.classList.add(newData.data.category_name);
+    category_elem.innerHTML = newData.data.category_name;
+    edit_div.querySelector(".todo-due_date").innerHTML = "Due: " + newData.data.due_date;
     edit_div.querySelector(".todo-due_date").classList.remove("due_date-done")
-    edit_div.dataset.todo_id = newData.result.id;
-    edit_div.dataset.todo_category = newData.result.category_name;
-    edit_div.dataset.todo_done = newData.result.done;
-    edit_div.dataset.todo_duedate = newData.result.due_date;
-    edit_div.dataset.todo_title = newData.result.title;
-    if (newData.result.done) {
+    edit_div.dataset.todo_id = newData.data.id;
+    edit_div.dataset.todo_category = newData.data.category_name;
+    edit_div.dataset.todo_done = newData.data.done;
+    edit_div.dataset.todo_duedate = newData.data.due_date;
+    edit_div.dataset.todo_title = newData.data.title;
+    if (newData.data.done) {
         edit_div.querySelector(".todo-due_date").classList.add("due_date-done")
         edit_div.querySelector(".tooltiptext").classList.remove("taskOverdue")
         edit_div.querySelector(".tooltiptext").classList.remove("notDoneTask")
@@ -324,7 +355,7 @@ function updateOldDiv(newData) {
         })
     } else {
         const dateNow = new Date();
-        const taskDueDate = new Date(newData.result.due_date)
+        const taskDueDate = new Date(newData.data.due_date)
         if (taskDueDate < dateNow) {
             edit_div.querySelector(".tooltiptext").classList.remove("notDoneTask")
             edit_div.querySelector(".tooltiptext").classList.remove("doneTask")
@@ -361,20 +392,25 @@ function removeOldDiv(data) {
 function addNewDiv(data) {
     const toDoList = document.querySelector("#toDoList");
 
+    var selection = toDoList.querySelectorAll('.toDoItem').length == 0
+    if (selection) {
+        toDoList.innerHTML = "";
+    }
+
     let newDiv = "";
     newDiv += `<div 
-            data-todo_id="${data.result.id}" 
-            data-todo_category="${data.result.category_name}" 
-            data-todo_done="${data.result.done}"
-            data-todo_title="${data.result.title}"
-            data-todo_duedate="${data.result.due_date}"
-            class="toDoItem"><p class="todo-title">${data.result.title}</p><span class="categoryTag ${data.result.category_name}">${data.result.category_name}</span><p class="todo-due_date"> Due: ${data.result.due_date}</p>`
+            data-todo_id="${data.data.id}" 
+            data-todo_category="${data.data.category_name}" 
+            data-todo_done="${data.data.done}"
+            data-todo_title="${data.data.title}"
+            data-todo_duedate="${data.data.due_date}"
+            class="toDoItem"><p class="todo-title">${data.data.title}</p><span class="categoryTag ${data.data.category_name}">${data.data.category_name}</span><p class="todo-due_date"> Due: ${data.data.due_date}</p>`
     newDiv += `<div class="edit-todo"><img class="edit-todo-img" src="./wrench-24.png"></div>`
     newDiv += `<div class="tooltip"><span class="tooltiptext `
 
-    if (new Date(data.result.due_date) < new Date() && data.result.done == false) {
+    if (new Date(data.data.due_date) < new Date() && data.data.done == false) {
         newDiv += ` taskOverdue">Status: </span><img src="./error-24.png" class="taskOverdue"></img></div>`
-    } else if (data.result.done == false) {
+    } else if (data.data.done == false) {
         newDiv += ` notDoneTask">Status: </span><img src="./warning-4-24.png" class="notDoneTask"></img></div>`
     } else {
         newDiv += ` doneTask">Status: </span><img src="./ok-24.png" class="doneTask"></img></div>`;
@@ -387,4 +423,3 @@ function addNewDiv(data) {
 
 getTodoOptions()
 getToDos();
-document.querySelector("#sumbitnewtaskbtn").addEventListener('click', newToDoTask);

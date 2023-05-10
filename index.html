@@ -172,6 +172,7 @@
                 <input type="text" name="user" id="username" placeholder="Username">
                 <input type="text" name="email" id="email" placeholder="Email">
                 <button onclick="request_new_api()" id="request_new_api">Request new api</button>
+                <span class="todo-request-api hidden"></span>
             </div>
             <div id="toDoList">
                 
@@ -186,8 +187,9 @@
                     <br>
                     Due date:
                     <input type="date" id="dueDateInput">
-                    <button id="sumbitnewtaskbtn" type="submit">Save task</button>
+                    <button id="sumbitnewtaskbtn" onclick="newToDoTask()">Save task</button>
                     <br>
+                    <span class="todo-submitNew-info hidden"></span>
                 </div>
             </div>
         </div>
