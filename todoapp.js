@@ -1,4 +1,4 @@
-const TODO_API_URL = "http://128.214.253.222:8355";
+const TODO_API_URL = "https://128.214.253.222:8355";
 
 let usernameHTML = document.getElementById("username");
 let emailHTML = document.getElementById("email");
