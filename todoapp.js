@@ -270,9 +270,24 @@ async function updateToDoTask(id, changedData) {
 }
 
 async function newToDoTask() {
-    let title = document.querySelector("#newToDotitle").value;
-    let category = document.querySelector("#todocategory").value;
-    let newduedate = document.querySelector("#dueDateInput").value;
+    let title;
+    let category;
+    let newduedate; 
+    if(document.querySelector("#newToDotitle").value != ""){
+        title = document.querySelector("#newToDotitle").value}
+    else{document.querySelector("#addToDo").innerHTML += ("You need to add a title!")
+        return}
+    
+    if(document.querySelector("#todocategory").value != "") {
+        category = document.querySelector("#todocategory").value} 
+    else{document.querySelector("#addToDo").innerHTML += ("You need to select a category!")
+        return}
+    
+    if (document.querySelector("#todocategory").value != "") {
+        newduedate = document.querySelector("#dueDateInput").value}
+    else{document.querySelector("#addToDo").innerHTML += ("You need to add a duedate!")
+        return}
+
     newduedate = new Date(newduedate);
     let inputdata = { title: title, category_id: category, due_date: newduedate }
     console.log(inputdata);
