@@ -171,7 +171,7 @@ async function getToDos() {
             data-todo_done="${elem.done}"
             data-todo_title="${elem.title}"
             data-todo_duedate="${elem.due_date}"
-            class="toDoItem"><p class="todo-title">${elem.title}</p><span class="categoryTag ${elem.category_name}">${elem.category_name}</span><p class="todo-due_date"> Due: ${elem.due_date}</p>`
+            class="toDoItem" id="${elem.id}"><p class="todo-title">${elem.title}</p><span class="categoryTag ${elem.category_name}">${elem.category_name}</span><p class="todo-due_date"> Due: ${elem.due_date}</p>`
             jaahas += `<div class="edit-todo"><img class="edit-todo-img" src="./wrench-24.png"></div>`
             jaahas += `<div class="tooltip"><span class="tooltiptext `
 
@@ -184,14 +184,21 @@ async function getToDos() {
             }
             jaahas += `<div class="tooltip"><span class="tooltiptext">Delete</span><img src="./x-mark-4-24.png" class="deleteTask"></div></div>`
             document.querySelector("#toDoList").innerHTML += jaahas
+            opacity(elem.id, elem.done);
+
         });
         addToDoButtonFunction()
         checkIfShowSortBox()
+        
     }
     catch (error) {
         if (error) document.querySelector("#toDoList").innerHTML = `<h3>${error}</h3>`;
         else document.querySelector("#toDoList").innerHTML = `<h3>Something went wrong!</h3>`;
     }
+}
+function opacity(elemid, isdone){
+    if(isdone == true) document.getElementById(elemid).style.opacity = 0.6;
+    else document.getElementById(elemid).style.opacity = 1;
 }
 
 function addToDoButtonFunction() {
@@ -265,6 +272,7 @@ async function checkDone(id, new_data) {
         .catch(error => {
             console.log(error)
         })
+        getToDos();
 }
 
 async function deleteTask(id) {
@@ -368,6 +376,7 @@ async function updateToDoTask(id, changedData) {
             msg.classList.remove('hidden');
             hideMsg(msg, 3500)
         })
+        getToDos();
 }
 
 async function newToDoTask() {
@@ -530,3 +539,4 @@ getTodoOptions()
 
 if ((API_KEY != null && API_KEY != "") || (USERNAME != null && USERNAME != "")) getToDos();
 else document.querySelector("#toDoList").innerHTML = "<p>Please create a user or assign your api_key in the settings above!</p>"
+
