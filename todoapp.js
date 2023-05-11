@@ -185,7 +185,6 @@ async function getToDos() {
             jaahas += `<div class="tooltip"><span class="tooltiptext">Delete</span><img src="./x-mark-4-24.png" class="deleteTask"></div></div>`
             document.querySelector("#toDoList").innerHTML += jaahas
             opacity(elem.id, elem.done);
-
         });
         addToDoButtonFunction()
         checkIfShowSortBox()
@@ -197,7 +196,8 @@ async function getToDos() {
     }
 }
 function opacity(elemid, isdone){
-    if(isdone == true) document.getElementById(elemid).style.opacity = 0.6;
+    console.log(isdone)
+    if(isdone === true) document.getElementById(elemid).style.opacity = 0.6;
     else document.getElementById(elemid).style.opacity = 1;
 }
 
@@ -272,7 +272,6 @@ async function checkDone(id, new_data) {
         .catch(error => {
             console.log(error)
         })
-        getToDos();
 }
 
 async function deleteTask(id) {
@@ -376,7 +375,6 @@ async function updateToDoTask(id, changedData) {
             msg.classList.remove('hidden');
             hideMsg(msg, 3500)
         })
-        getToDos();
 }
 
 async function newToDoTask() {
@@ -452,6 +450,7 @@ function updateOldDiv(newData) {
     edit_div.dataset.todo_done = newData.data.done;
     edit_div.dataset.todo_duedate = newData.data.due_date;
     edit_div.dataset.todo_title = newData.data.title;
+    opacity(edit_div.dataset.todo_id,(/true/).test(edit_div.dataset.todo_done))
     if (newData.data.done) {
         edit_div.querySelector(".todo-due_date").classList.add("due_date-done")
         edit_div.querySelector(".tooltiptext").classList.remove("taskOverdue")
@@ -494,7 +493,6 @@ function updateOldDiv(newData) {
             })
         }
     }
-
 }
 
 function removeOldDiv(data) {
@@ -536,7 +534,5 @@ function addNewDiv(data) {
 }
 
 getTodoOptions()
-
 if ((API_KEY != null && API_KEY != "") || (USERNAME != null && USERNAME != "")) getToDos();
 else document.querySelector("#toDoList").innerHTML = "<p>Please create a user or assign your api_key in the settings above!</p>"
-
