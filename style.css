@@ -5,6 +5,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: Play;
     src: url('./fonts/Play-Regular.otf') format('opentype');
@@ -12,6 +13,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: FjallaOne;
     src: url('./fonts/FjallaOne-Regular.otf') format('opentype');
@@ -19,6 +21,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: CastoroTitling;
     src: url('./fonts/CastoroTitling-Regular.otf') format('opentype');
@@ -26,6 +29,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: BrunoAce;
     src: url('./fonts/BrunoAceSC-Regular.otf') format('opentype');
@@ -33,6 +37,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: JosefinSans;
     src: url('./fonts/JosefinSans-VariableFont_wght.otf') format('opentype');
@@ -40,6 +45,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: Bebas;
     src: url('./fonts/BebasNeue-Regular.otf') format('opentype');
@@ -48,24 +54,30 @@
     font-style: normal;
 }
 
-#font-bebasneue{
+#font-bebasneue {
     font-family: Bebas;
 }
+
 #font-brunoace {
     font-family: BrunoAce;
 }
+
 #font-castorotitling {
     font-family: CastoroTitling;
 }
+
 #font-fjallaone {
     font-family: FjallaOne;
 }
+
 #font-josefinsans {
     font-family: JosefinSans;
 }
+
 #font-play {
     font-family: Play;
 }
+
 #font-sigmar {
     font-family: Sigmar;
 }
@@ -73,10 +85,11 @@
 :root {
     --calcCurrencyColor: #96CD86;
     --whatsmyipcolor: rgb(178, 184, 233);
-    --chatgptcolor:#b285ec; 
-    --font-family:Sigmar;
-    --font-size:12px;
+    --chatgptcolor: #b285ec;
+    --font-family: Sigmar;
+    --font-size: 12px;
 }
+
 * {
     font-family: var(--font-family);
     font-size: var(--font-size);
@@ -100,7 +113,7 @@ body {
 
 
 /*todoapp style*/
-#todoapp{
+#todoapp {
     background-color: rgb(255, 195, 105);
     border: 4px solid black;
     border-radius: 8px;
@@ -108,7 +121,8 @@ body {
     margin-bottom: 16px;
     text-align: center;
 }
-#getKeyBox{
+
+#getKeyBox {
     border: 2px solid black;
     padding: 8px;
     margin: 4px;
@@ -116,49 +130,143 @@ body {
     width: fit-content;
     background-color: rgb(180, 161, 133);
 }
-#request_new_api:hover, #sumbitnewtaskbtn:hover{
+
+#request_new_api:hover,
+#sumbitnewtaskbtn:hover {
     background-color: rgb(255, 186, 122);
     cursor: pointer;
 }
+
+.todo-footer {
+    display: flex;
+    flex-flow: row;
+}
+
+.todo-sort {
+    flex: 1;
+}
+
+.todo-sort-btns {
+    display: flex;
+    flex-flow: row;
+}
+
+.todo-sort-btn {
+    background-color: blanchedalmond;
+    border: solid black 2px;
+    border-radius: 8px;
+    padding: 8px;
+    flex: 1;
+}
+
+.sort-order-new::after {
+    border-style: solid;
+    border-width: 0.15em 0.15em 0 0;
+    content: '';
+    display: inline-block;
+    height: 0.45em;
+    left: 0.15em;
+    position: relative;
+    top: 0.15em;
+    transform: rotate(-45deg);
+    vertical-align: top;
+    width: 0.45em;
+    top: 15%;
+    transform: rotate(135deg);
+}
+
+.sort-order-old::after {
+    border-style: solid;
+    border-width: 0.15em 0.15em 0 0;
+    content: '';
+    display: inline-block;
+    height: 0.45em;
+    left: 0.15em;
+    position: relative;
+    top: 0.15em;
+    transform: rotate(-45deg);
+    vertical-align: top;
+    width: 0.45em;
+    top: 40%;
+    transform: rotate(315deg);
+}
+
+.none::after {
+    content: '- done';
+}
+
+.done::after {
+    content: '- notDone';
+}
+
+.notDone::after {
+    content: '- none';
+}
+
+.todo-sort-btn:hover {
+    background-color: rgb(172, 158, 138);
+    cursor: pointer;
+}
+
 #toDoList {
     max-height: 300px;
     overflow-y: auto;
     overflow-x: hidden;
 }
-#newtodo{
+
+.newtodo {
     background-color: rgb(180, 161, 133);
     border: 2px solid black;
     border-radius: 8px;
     padding: 4px;
-    margin: 4px;
-    width: fit-content;
+    margin: 6px;
+    margin-left: 15px;
+    margin-right: 15px;
+    flex: 1;
 }
-#newToDotitle, #todocategory, #request_new_api, #email, #username{
+
+#newToDotitle,
+#todocategory,
+#request_new_api,
+#email,
+#username {
     background-color: blanchedalmond;
     border: solid 2px black;
 }
-#todo_edit_title, #todo_edit_category, #todo_edit_duedate,#checkboxtext{
+
+#todo_edit_title,
+#todo_edit_category,
+#todo_edit_duedate,
+#checkboxtext {
     background-color: blanchedalmond;
     border: solid 2px black;
     margin-right: 4px;
     padding: 2px;
     cursor: pointer;
 }
-#dueDateInput, #sumbitnewtaskbtn{
+
+#dueDateInput,
+#sumbitnewtaskbtn {
     background-color: blanchedalmond;
     border: solid 2px black;
     margin-top: 4px;
 }
-#todo_edit_submit, #close_edit_box{
+
+#todo_edit_submit,
+#close_edit_box {
     background-color: blanchedalmond;
     border: solid 2px black;
     margin-top: 4px;
 }
-#todo_edit_submit:hover, #close_edit_box:hover,#todo_edit_done{
+
+#todo_edit_submit:hover,
+#close_edit_box:hover,
+#todo_edit_done {
     background-color: rgb(255, 186, 122);
     cursor: pointer;
 }
-.toDoItem{
+
+.toDoItem {
     background-color: rgb(180, 161, 133);
     border: 2px solid black;
     margin: 4px;
@@ -169,80 +277,100 @@ body {
     pointer-events: visible;
     border-radius: 8px;
 }
+
 .toDoItem:hover {
     scale: 1;
     background-color: rgb(173, 130, 89);
 }
+
 .edit-todo {
     position: absolute;
     left: 5px;
     top: 5px;
     visibility: hidden;
 }
+
 .toDoItem:hover .edit-todo {
     visibility: visible;
 }
+
 .edit-todo:hover {
     scale: 1.2;
     visibility: visible;
     cursor: pointer;
 
 }
+
 .todo-title {
     margin-left: 30px;
 }
+
 .toDoItem p {
-    flex:1.5;
+    flex: 1.5;
     font-size: 16px;
     pointer-events: none;
 }
+
 .toDoItem span {
     flex: 0.75;
     font-size: 15px;
     pointer-events: none;
 }
-.toDoItem div{
+
+.toDoItem div {
     margin: auto;
     flex: .5;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-img.deleteTask, img.notDoneTask, img.taskOverdue {
+
+img.deleteTask,
+img.notDoneTask,
+img.taskOverdue {
     cursor: pointer;
 }
+
 .due_date-done {
-    text-decoration:line-through;
+    text-decoration: line-through;
 }
-.categoryTag{
+
+.categoryTag {
     border: 2px solid rgb(0, 0, 0);
     padding: 4px;
-    padding-left:12px;
+    padding-left: 12px;
     padding-right: 12px;
     border-radius: 16px;
     margin: auto;
     margin-left: 15px;
     margin-right: 15px;
 }
+
 .todo-request-api {
     width: auto;
 }
-.Urgent{
+
+.Urgent {
     background-color: rgb(255, 47, 47);
 }
-.Cleaning{
+
+.Cleaning {
     background-color: aquamarine;
 }
-.Work{
+
+.Work {
     background-color: rgb(255, 168, 134);
 }
-.Gardening{
+
+.Gardening {
     background-color: rgb(93, 192, 90);
 }
-.Shopping{
+
+.Shopping {
     background-color: rgb(255, 159, 234);
 }
-.Cooking{
+
+.Cooking {
     background-color: rgb(255, 243, 72);
 }
 
@@ -250,9 +378,9 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
 .tooltip {
     position: relative;
     margin: auto;
-  }
-  
-  .tooltip .tooltiptext {
+}
+
+.tooltip .tooltiptext {
     visibility: hidden;
     width: max-content;
     padding: 5px;
@@ -262,25 +390,29 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     color: #fff;
     text-align: center;
     border-radius: 6px;
-  
+
     /* Position the tooltip */
     position: absolute;
     right: 75%;
     z-index: 1;
-  }
-  .tooltip:hover .tooltiptext {
+}
+
+.tooltip:hover .tooltiptext {
     visibility: visible;
     pointer-events: none;
-  }
-  .tooltip .tooltiptext.taskOverdue::after   {
+}
+
+.tooltip .tooltiptext.taskOverdue::after {
     content: " - Task Overdue";
-  }
-  .tooltip .tooltiptext.notDoneTask::after   {
+}
+
+.tooltip .tooltiptext.notDoneTask::after {
     content: " - Not Done";
-  }
-  .tooltip .tooltiptext.doneTask::after   {
-    content: " - Done"; 
-  }
+}
+
+.tooltip .tooltiptext.doneTask::after {
+    content: " - Done";
+}
 
 
 .todo_edit_box {
@@ -288,7 +420,7 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     justify-content: center;
     align-items: center;
     position: fixed;
-    pointer-events:stroke;
+    pointer-events: stroke;
     box-sizing: border-box;
     right: 0;
     top: 0;
@@ -298,7 +430,8 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     backdrop-filter: blur(5px);
     pointer-events: all;
 }
-.todo_edit_container{
+
+.todo_edit_container {
     display: flex;
     background-color: rgb(255, 195, 105);
     min-height: 200px;
@@ -312,44 +445,51 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     pointer-events: all;
     z-index: 100;
 }
-.toDoItemEdit{
+
+.toDoItemEdit {
     margin: 4px;
     display: flex;
     margin-left: 15px;
     margin-right: 15px;
     pointer-events: visible;
 }
-#buttons_edit_container{
+
+#buttons_edit_container {
     margin-left: 15px;
 }
-#editconttitle{
+
+#editconttitle {
     text-align: center;
 }
 
 /*________*/
-#bored{
+#bored {
     background-color: rgb(211, 193, 255);
     border: 4px solid black;
     border-radius: 8px;
     padding: 8px;
     margin-bottom: 16px;
 }
-#drinks{
+
+#drinks {
     background-color: palevioletred;
     border: 4px solid black;
     border-radius: 8px;
     padding: 8px;
 }
-#weather{
+
+#weather {
     background-color: lightblue;
     border: 4px solid black;
     border-radius: 8px;
     padding: 8px;
     margin-bottom: 16px;
 }
-#weather img{
+
+#weather img {
     display: flex;
 }
+
 #weather p {
     display: flex;
 }
@@ -363,32 +503,37 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
 .bigview {
     flex: 2;
     flex-basis: 66%;
     max-width: calc(66% - 40px);
 }
+
 @media screen and (max-width: 900px) {
     .apiview {
         flex: 1;
         flex-basis: 50%;
         max-width: calc(50% - 40px);
     }
+
     .bigview {
         flex: 2;
         flex-basis: 100%;
         max-width: calc(100% - 40px);
     }
+
     .apiview:nth-child(5) {
         order: 1;
     }
-} 
+}
 
 /*Whats my ip*/
 .apiview .whats-my-ip-container {
     flex: 1;
-    margin:auto;
+    margin: auto;
 }
+
 .whats-my-ip-container {
     background-color: var(--whatsmyipcolor);
     display: flex;
@@ -397,11 +542,13 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     border: 4px black solid;
     border-radius: 8px;
 }
+
 @media only screen and (max-width: 1550px) {
     .whats-my-ip-container {
         flex-direction: column;
     }
 }
+
 .whats-my-ip-inner-contaimer {
     flex: 1;
     display: flex;
@@ -411,6 +558,7 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     text-align: center;
     resize: both;
 }
+
 .whats-my-ip-your-ip {
     display: flex;
     flex-flow: row;
@@ -418,26 +566,31 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     justify-content: center;
     text-align: center;
 }
+
 .whats-my-ip-your-ip p {
     margin-left: 10px;
     overflow-x: auto;
     word-wrap: break-word;
     max-width: 40%;
 }
+
 .whats-my-ip-response {
     display: flex;
     flex-flow: column;
 }
+
 .whats-my-ip-map-container {
-    flex:1;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 15px;
 }
+
 #input-ip {
     text-align: center;
 }
+
 #response-map {
     width: 250px;
     height: 250px;
@@ -457,9 +610,11 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     border-color: black;
     border-style: solid;
 }
+
 .currency-head {
     text-align: center;
 }
+
 .currency-toolbar-row {
     display: flex;
     flex-flow: row;
@@ -471,6 +626,7 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     border-style: solid;
     align-items: center;
 }
+
 .currency-toolbar-row-left {
     flex: 2;
     padding: 10px;
@@ -480,6 +636,7 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     margin: 0;
     overflow: auto;
 }
+
 .currency-toolbar-row-right {
     flex: 4;
     padding: 10px;
@@ -503,15 +660,16 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     overflow: hidden;
     text-overflow: ellipsis;
     margin-left: 5px;
-    background-color:var(--calcCurrencyColor);
+    background-color: var(--calcCurrencyColor);
     padding: 7px;
     padding-left: 0;
     padding-right: 0;
 }
+
 .right-small-flex option {
     white-space: nowrap;
     width: 100%;
-    border-bottom:  1px black solid;
+    border-bottom: 1px black solid;
 }
 
 
@@ -524,29 +682,34 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     border: 4px black solid;
     border-radius: 8px;
 }
+
 .chatgpt-column {
     display: flex;
     flex-flow: column;
 }
+
 .chatgpt-column h3 {
     margin: 0;
     text-align: center;
     padding: 5px;
 }
-.chatgpt-question-container{
+
+.chatgpt-question-container {
     display: flex;
     flex-flow: row;
     border: 5px black solid;
     border-radius: 10px;
     margin: 5px;
 }
+
 #chatgpt-question {
-    flex:5;
+    flex: 5;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     border: none;
     padding: 5px;
 }
+
 #btn-submit-question {
     flex: 1;
     border: none;
@@ -556,6 +719,7 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     border-bottom-right-radius: 5px;
     border-left: 5px black solid;
 }
+
 .chatgpt-answer-status {
     margin: 5px;
     padding: 5px;
@@ -563,9 +727,11 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     border: 5px black solid;
     border-radius: 10px;
 }
+
 .chatgpt-answer-status:hover {
     cursor: pointer;
 }
+
 #chatgpt-answer {
     padding: 5px;
     margin: 5px;
@@ -582,6 +748,7 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     visibility: hidden;
     display: none;
 }
+
 .settings-menu {
     position: fixed;
     pointer-events: none;
@@ -594,7 +761,7 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
 }
 
 #btn-settings {
-    pointer-events:all;
+    pointer-events: all;
     position: fixed;
     right: 0;
     top: 0;
@@ -606,13 +773,14 @@ img.deleteTask, img.notDoneTask, img.taskOverdue {
     border: 4px black solid;
     border-radius: 40px;
 }
+
 #btn-settings:hover {
     background-color: gray;
     cursor: pointer;
 }
 
 #menu-settings {
-    pointer-events:all;
+    pointer-events: all;
     position: absolute;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);

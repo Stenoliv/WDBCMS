@@ -177,19 +177,32 @@
             <div id="toDoList">
                 
             </div>
-            <div id="newtodo">
-                <h3>Add new task to be done</h3>
-                <div id="addToDo">
-                    <input type="text" placeholder="Description of the task" id="newToDotitle">
-                    <select name="category" id="todocategory">
-                        <option disabled selected>Choose category</option>
-                    </select>
-                    <br>
-                    Due date:
-                    <input type="date" id="dueDateInput">
-                    <button id="sumbitnewtaskbtn" onclick="newToDoTask()">Save task</button>
-                    <br>
-                    <span class="todo-submitNew-info hidden"></span>
+            <div class="todo-footer">
+                <div class="newtodo" id="newtodo">
+                    <h3>Add new task to be done</h3>
+                    <div id="addToDo">
+                        <input type="text" placeholder="Description of the task" id="newToDotitle">
+                        <select name="category" id="todocategory">
+                            <option disabled selected>Choose category</option>
+                        </select>
+                        <br>
+                        Due date:
+                        <input type="date" id="dueDateInput">
+                        <button id="sumbitnewtaskbtn" onclick="newToDoTask()">Save task</button>
+                        <br>
+                        <span class="todo-submitNew-info hidden"></span>
+                    </div>
+                </div>
+                <div class="todo-sort newtodo hidden">
+                    <h3>Sort your to dos</h3>
+                    <div class="todo-sort-btns">
+                        <button class="todo-sort-btn sort-order-old" id="sort-by-btn" type="button" data-order="old" onclick="sortToDo()">
+                            Sort by date: 
+                        </button>
+                        <button class="todo-sort-btn none" id="hide-todos-btn"type="button" data-hidden="none" onclick="hideDone()">
+                            Hide
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

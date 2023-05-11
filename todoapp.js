@@ -1,7 +1,7 @@
 const TODO_API_URL = "https://128.214.253.222:8355";
-
-let usernameHTML = document.getElementById("username");
-let emailHTML = document.getElementById("email");
+const ToDoSortBox = document.querySelector(".todo-sort");
+var usernameHTML = document.getElementById("username");
+var emailHTML = document.getElementById("email");
 var API_KEY = localStorage.getItem(ToDo_API_KEY_STORAGE);
 var USERNAME = localStorage.getItem(ToDo_API_USERNAME_STORAGE);
 
@@ -19,6 +19,84 @@ var newToDoEntry = {
 
 if (USERNAME != null) usernameHTML.value = USERNAME;
 
+function checkIfShowSortBox() {
+    let nubmerOfToDos = document.querySelector("#toDoList").querySelectorAll(".toDoItem").length == 0
+    if (nubmerOfToDos) {
+        ToDoSortBox.classList.add('hidden');
+        return
+    }
+    ToDoSortBox.classList.remove('hidden');
+    let el = document.querySelector("#sort-by-btn");
+}
+
+function sortToDo() {
+    let el = document.querySelector("#sort-by-btn");
+    if (el.dataset.order === "new") {
+        let ToDos = document.querySelectorAll('.toDoItem');
+        let ArrayOfDivs = Array.from(ToDos)
+        let toDoList = document.querySelector("#toDoList");
+        toDoList.innerHTML = ""
+        ArrayOfDivs.sort((a, b) => {
+            const aVal = Date.parse(a.dataset.todo_duedate);
+            const bVal = Date.parse(b.dataset.todo_duedate);
+            return aVal - bVal;
+        })
+        ArrayOfDivs.forEach(element => {
+            toDoList.append(element);
+        })
+        el.dataset.order = "old";
+        el.classList.remove('sort-order-new')
+        el.classList.add('sort-order-old')
+    } else {
+        let ToDos = document.querySelectorAll('.toDoItem');
+        let ArrayOfDivs = Array.from(ToDos)
+        let toDoList = document.querySelector("#toDoList");
+        toDoList.innerHTML = ""
+        ArrayOfDivs.reverse();
+        ArrayOfDivs.forEach(element => {
+            toDoList.append(element);
+        })
+        el.dataset.order = "new";
+        el.classList.remove('sort-order-old')
+        el.classList.add('sort-order-new')
+    }
+}
+function hideDone() {
+    let btn = document.querySelector("#hide-todos-btn");
+    let todoitems = document.querySelectorAll('.toDoItem');
+    let arrToDoItems = Array.from(todoitems);
+    if (btn.dataset.hidden === "none") {
+        arrToDoItems.forEach(item => {
+            item.classList.remove('hidden')
+            if((/true/).test(item.dataset.todo_done) == true) {
+                console.log('hid done elem')
+                item.classList.add('hidden');
+            }
+            btn.dataset.hidden = "done"
+        })
+        btn.classList.remove('none')
+        btn.classList.add('done')
+    } else if (btn.dataset.hidden === "done") {
+        arrToDoItems.forEach(item => {
+            item.classList.remove('hidden')
+            if((/true/).test(item.dataset.todo_done) == false) {
+                console.log('hid done elem')
+                item.classList.add('hidden');
+            }
+            btn.dataset.hidden = "notDone"
+        })
+        btn.classList.remove('done')
+        btn.classList.add('notDone')
+    } else {
+        arrToDoItems.forEach(item => {
+            item.classList.remove('hidden')
+            btn.dataset.hidden = "none"
+        })
+        btn.classList.remove('notDone')
+        btn.classList.add('none')
+    }
+}
+
 async function request_new_api() {
     body = {
         username: usernameHTML.value,
@@ -34,7 +112,7 @@ async function request_new_api() {
     })
         .then(resp => resp.json())
         .then(data => {
-            if(data.result == "failed") {
+            if (data.result == "failed") {
                 response_msg.innerHTML = data.message;
                 response_msg.classList.remove('hidden');
                 hideMsg(response_msg, 5000)
@@ -53,7 +131,7 @@ async function request_new_api() {
             console.log(error)
         })
 
-        
+
 }
 
 async function hideMsg(msg, ms) {
@@ -108,6 +186,7 @@ async function getToDos() {
             document.querySelector("#toDoList").innerHTML += jaahas
         });
         addToDoButtonFunction()
+        checkIfShowSortBox()
     }
     catch (error) {
         if (error) document.querySelector("#toDoList").innerHTML = `<h3>${error}</h3>`;
@@ -130,12 +209,12 @@ function addToDoButtonFunction() {
             // If not checked query for check done 
             doneIMG.addEventListener('click', btn_notDone)
         }
-        catch (error) {}
+        catch (error) { }
         try {
             // If not checked query for check done 
             overdueIMG.addEventListener('click', btn_overdue)
         }
-        catch (error) {}
+        catch (error) { }
         // DELETE task
         deleteIMG.addEventListener('click', btn_delete)
         // UPDATE task
@@ -294,21 +373,30 @@ async function updateToDoTask(id, changedData) {
 async function newToDoTask() {
     let title;
     let category;
-    let newduedate; 
-    if(document.querySelector("#newToDotitle").value != ""){
-        title = document.querySelector("#newToDotitle").value}
-    else{document.querySelector("#addToDo").innerHTML += ("You need to add a title!")
-        return}
-    
-    if(document.querySelector("#todocategory").value != "") {
-        category = document.querySelector("#todocategory").value} 
-    else{document.querySelector("#addToDo").innerHTML += ("You need to select a category!")
-        return}
-    
+    let newduedate;
+    if (document.querySelector("#newToDotitle").value != "") {
+        title = document.querySelector("#newToDotitle").value
+    }
+    else {
+        document.querySelector("#addToDo").innerHTML += ("You need to add a title!")
+        return
+    }
+
     if (document.querySelector("#todocategory").value != "") {
-        newduedate = document.querySelector("#dueDateInput").value}
-    else{document.querySelector("#addToDo").innerHTML += ("You need to add a duedate!")
-        return}
+        category = document.querySelector("#todocategory").value
+    }
+    else {
+        document.querySelector("#addToDo").innerHTML += ("You need to select a category!")
+        return
+    }
+
+    if (document.querySelector("#todocategory").value != "") {
+        newduedate = document.querySelector("#dueDateInput").value
+    }
+    else {
+        document.querySelector("#addToDo").innerHTML += ("You need to add a duedate!")
+        return
+    }
 
     newduedate = new Date(newduedate);
     let inputdata = { title: title, category_id: category, due_date: newduedate }
@@ -402,12 +490,13 @@ function updateOldDiv(newData) {
 
 function removeOldDiv(data) {
     edit_div.remove();
+    checkIfShowSortBox();
 }
 
 function addNewDiv(data) {
     const toDoList = document.querySelector("#toDoList");
 
-    var selection = toDoList.querySelectorAll('.toDoItem').length == 0
+    let selection = toDoList.querySelectorAll('.toDoItem').length == 0
     if (selection) {
         toDoList.innerHTML = "";
     }
@@ -434,7 +523,10 @@ function addNewDiv(data) {
 
     toDoList.innerHTML += newDiv
     addToDoButtonFunction()
+    checkIfShowSortBox();
 }
 
 getTodoOptions()
-getToDos();
+
+if ((API_KEY != null && API_KEY != "") || (USERNAME != null && USERNAME != "")) getToDos();
+else document.querySelector("#toDoList").innerHTML = "<p>Please create a user or assign your api_key in the settings above!</p>"
